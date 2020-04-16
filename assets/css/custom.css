@@ -1,0 +1,20 @@
+
+
+
+.c-img{
+    max-height:   100vh !important;
+}
+
+@media screen and (min-width: 480px) {
+    body {
+        background-color: rgb(157, 162, 172);
+        width: 90vw;
+        height: 90vh;
+        margin: 1vw;
+        /* border: groove rgb(194, 187, 187); */
+    }
+
+    div#main {
+        font-size: 3vw;
+    }
+}
