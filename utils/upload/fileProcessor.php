@@ -1,14 +1,20 @@
 
 <?php
+
+require_once('../../db/connection.php');
+
 require_once('../../layout/admin/header.php');
+
+
+
+    $conn = DBCoonect();
+
 ?>
 
 
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">File Processor</h5>
-   
-
 <?php
 $target_dir = "../../storage/";
 $target_file = $target_dir . basename($_FILES["file"]["name"]);
@@ -48,8 +54,12 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
+        $link =$target_file;
+        storeResource($conn,$link);
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        $err = "Sorry, there was an error uploading your file.";
+             header('Location: ./index.php?err='.$err);
+
     }
 }
 ?>
@@ -59,5 +69,57 @@ if ($uploadOk == 0) {
 
 
 <?php
-require_once('../../layout/admin/footer.php')
+require_once('../../layout/admin/footer.php');
+
+
+
+
+
+
+
+
+
+
+
+
+//FUNCTIONS
+
+
+function storeResource($conn,$link) {
+
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+
+
+$sql = "INSERT INTO `resources` (`id`, `title`, `link`, `description`)
+ VALUES (NULL, '$title', '$link', '$decription' )";
+
+ mysqli_query($conn,$sql) or die(mysqli_error($conn));
+
+  
+                     $ok = 'Done' ;  
+                    header('Location:./index.php?err='.$ok);
+
+        exit;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
+
+
+
+

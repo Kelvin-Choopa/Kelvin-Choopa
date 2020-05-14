@@ -1,9 +1,4 @@
 
-
-
-
-
-
 <?php
 require_once('../../layout/admin/header.php');
 ?>
@@ -21,9 +16,36 @@ require_once('../../layout/admin/header.php');
 <span class="badge badge-pill badge-dark">Gif</span>
     
     </h6>
+
+
+      <?php
+
+      if(isset($_GET['err'])):
+    ?>
+
+      <blockquote class='text-danger'>
+         <?php
+     echo $_GET['err'];
+    ?>
+
+      </blockquote>
+
+
+    <?php endif ?>
    
 
 <form action="fileProcessor.php" method="post" enctype="multipart/form-data">
+
+        <div class="form-group ">
+    <label for="title">Title</label>
+    <input type="title" class="form-control" name="title" aria-describedby="nameHelp" />
+  </div>
+
+        <div class="form-group ">
+    <label for="description">Description</label>
+    <input type="description" class="form-control" name="description" aria-describedby="nameHelp" />
+  </div>
+
 
 <div class="form-group">
   <label for="exampleFormControlFile1">Click to upload</label>
@@ -33,12 +55,8 @@ require_once('../../layout/admin/header.php');
 <button>  Upload </button>
 </form>
 
-
-
-
   </div>
 </div>
-
 
 <?php
 require_once('../../layout/admin/footer.php')
