@@ -17,7 +17,8 @@ require_once('../../layout/admin/header.php');
     <h5 class="card-title">File Processor</h5>
 <?php
 $target_dir = "../../storage/";
-$target_file = $target_dir . basename($_FILES["file"]["name"]);
+$fileName = basename($_FILES["file"]["name"]);
+$target_file = $target_dir . $fileName;
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
@@ -37,7 +38,7 @@ if (file_exists($target_file)) {
     $uploadOk = 0;
 }
 // Check file size
-if ($_FILES["file"]["size"] > 500000) {
+if ($_FILES["file"]["size"] > 900000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
@@ -54,8 +55,9 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
-        $link =$target_file;
-        storeResource($conn,$link);
+        $link =$fileName;
+        $type = $imageFileType;
+        storeResource($conn,$link,$type);
     } else {
         $err = "Sorry, there was an error uploading your file.";
              header('Location: ./index.php?err='.$err);
@@ -85,14 +87,14 @@ require_once('../../layout/admin/footer.php');
 //FUNCTIONS
 
 
-function storeResource($conn,$link) {
+function storeResource($conn,$link,$type) {
 
     $title = $_POST['title'];
     $description = $_POST['description'];
 
 
-$sql = "INSERT INTO `resources` (`id`, `title`, `link`, `description`)
- VALUES (NULL, '$title', '$link', '$decription' )";
+$sql = "INSERT INTO `resources` (`id`, `title`, `link`, `description`,`type`)
+ VALUES (NULL, '$title', '$link', '$decription' ,'$type')";
 
  mysqli_query($conn,$sql) or die(mysqli_error($conn));
 
