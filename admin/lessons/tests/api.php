@@ -28,12 +28,16 @@ function createQuestion($conn) {
 
     $type = $_POST['type'];
     $text = $_POST['text'];
-    $answer_id = $_POST['answer_id'];
+    $a = $_POST['a'];
+    $b = $_POST['b'];
+    $c = $_POST['c'];
+    $d = $_POST['d'];
+    $answer = $_POST['answer'];
     $created_by = $_SESSION['user']['name'];
 
 
-$sql = "INSERT INTO `questions` (`id`, `type`, `text`, `answer_id`, `created_by`, `created_at`, `updated_at`) 
-VALUES (NULL, '$type', '$text', '$answer_id', '$created_by', current_timestamp(), NULL);";
+$sql = "INSERT INTO `questions` (`id`, `type`, `text`, `answer`, `created_by`, `created_at`, `updated_at`,`a`,`b`,`c`,`d`) 
+VALUES (NULL, '$type', '$text', '$answer', '$created_by', current_timestamp(), NULL,'$a','$b','$c','$d');";
 
  mysqli_query($conn,$sql) or header('Location: create.php?msg='.mysqli_error($conn));
 
@@ -41,6 +45,8 @@ VALUES (NULL, '$type', '$text', '$answer_id', '$created_by', current_timestamp()
         exit;
 
 }
+
+
 function createAnswer($conn) {
 
     $type = $_POST['type'];
