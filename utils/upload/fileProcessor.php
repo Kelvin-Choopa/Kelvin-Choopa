@@ -23,6 +23,9 @@ $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
+
+     ;
+
     $check = getimagesize($_FILES["file"]["tmp_name"]);
     if($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
@@ -38,16 +41,25 @@ if (file_exists($target_file)) {
     $uploadOk = 0;
 }
 // Check file size
-if ($_FILES["file"]["size"] > 900000) {
+if ($_FILES["file"]["size"] > 50000000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
 // Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "pdf" ) {
-    echo "Sorry, only JPG, JPEG, PNG & pdf files are allowed.";
+if(isset($_POST['past_paper']) && $imageFileType != "pdf" ){
+    echo "Sorry, only pdf files are allowed.";
+    $uploadOk = 0;
+    
+}else if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "pdf" && $imageFileType != "mp4" ) {
+    echo "Sorry, only JPG, JPEG, PNG,mp4 & pdf files are allowed.";
     $uploadOk = 0;
 }
+
+
+
+
+
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
@@ -62,7 +74,9 @@ if ($uploadOk == 0) {
         echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
         $link =$fileName;
         $type = $imageFileType;
-        storeResource($conn,$link,$type);
+
+        isset($_POST['past_paper']) ?  storeExamResource($conn,$link,$type) :  storeResource($conn,$link,$type);
+
     } else {
         $err = "Sorry, there was an error uploading your file.";
              header('Location: ./index.php?err='.$err);
@@ -96,10 +110,12 @@ function storeResource($conn,$link,$type) {
 
     $title = $_POST['title'];
     $description = $_POST['description'];
+    $created_by = $_SESSION['user']['name'];
 
 
-$sql = "INSERT INTO `resources` (`id`, `title`, `link`, `description`,`type`)
- VALUES (NULL, '$title', '$link', '$decription' ,'$type')";
+
+$sql = "INSERT INTO `resources` (`id`, `title`, `link`, `description`,`type`,`created_by`)
+ VALUES (NULL, '$title', '$link', '$description' ,'$type','$created_by')";
 
  mysqli_query($conn,$sql) or die(mysqli_error($conn));
 
@@ -111,6 +127,83 @@ $sql = "INSERT INTO `resources` (`id`, `title`, `link`, `description`,`type`)
 
 }
 
+
+function storeExamResource($conn,$link,$type) {
+
+
+    if(isset($_POST['mark_schema'])) return storeMarkResource($conn,$link,$type);
+
+
+
+
+
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $year = $_POST['year'];
+    $month = strlen($_POST['month']) == 0 ? 0 : ($_POST['month']);
+    $created_by = $_SESSION['user']['name'];
+
+
+
+$sql = "INSERT INTO `past_papers` (`id`, `title`, `link`, `description`,`year`,`month`,`created_by`)
+ VALUES (NULL, '$title', '$link', '$description' ,'$year','$month','$created_by')";
+
+ mysqli_query($conn,$sql) or die(mysqli_error($conn));
+
+  
+                     $ok = 'Done' ;  
+                    header('Location:./past_papers.php?err='.$ok);
+
+        exit;
+
+}
+
+
+
+function storeMarkResource($conn,$link,$type) {
+
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $year = $_POST['year'];
+    $month = strlen($_POST['month']) == 0 ? 0 : ($_POST['month']);
+    $created_by = $_SESSION['user']['name'];
+
+
+
+$sql = "INSERT INTO `mark_schema` (`id`, `title`, `link`, `description`,`year`,`month`,`created_by`)
+ VALUES (NULL, '$title', '$link', '$description' ,'$year','$month','$created_by')";
+
+ mysqli_query($conn,$sql) or die(mysqli_error($conn));
+
+  
+                     $ok = 'Done' ;  
+                    header('Location:./mark_schema.php?err='.$ok);
+
+        exit;
+
+}
+
+
+function getMarkSchema(){
+    $conn = DBCoonect();
+
+$sql = "SELECT * FROM answers  ";
+
+        $results = mysqli_query($conn,$sql);    
+
+       while ($row = mysqli_fetch_assoc($results)) {
+           # code...
+           $ans = $row['text'];
+           $id = $row['id'];
+
+           echo "
+  <option value='$id' > $ans </option>
+           
+           ";
+       }
+
+
+}
 
 
 
