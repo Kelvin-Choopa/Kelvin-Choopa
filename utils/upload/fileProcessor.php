@@ -53,6 +53,11 @@ if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
+    //rename
+        $fileName =  mt_rand(100000,999999).'.'.$imageFileType;
+        $target_file = $target_dir . $fileName; 
+;
+        
     if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
         $link =$fileName;
