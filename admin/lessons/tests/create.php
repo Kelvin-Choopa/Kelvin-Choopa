@@ -3,10 +3,6 @@
 require_once('../../../layout/admin/header.php');
 require_once('./api.php');
 
-
-
-
-
 ?>
 
   <div class="container">
@@ -59,8 +55,6 @@ require_once('./api.php');
     <input type="text" class="form-control" name="text" aria-describedby="textHelp" />
   </div>
 
- 
-
    <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">A</span>
@@ -89,8 +83,6 @@ require_once('./api.php');
   <input type="text" name='d' class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
 </div>
 
-
-
      <div class="form-group ">
     <label for="gender">Answer</label>
     <select  class="form-control" name="answer" aria-describedby="genderHelp" >
@@ -103,11 +95,8 @@ require_once('./api.php');
 
      <div class="form-group ">
 
-
   <button type="submit" class="btn btn-primary">Submit</button>
   </div>
-
-
 
 
 </form>

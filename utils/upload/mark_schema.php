@@ -12,10 +12,7 @@ require_once('../../layout/admin/header.php');
     
 
 <span class="badge badge-pill badge-success">Pdf (Past papers)</span>
-
-    
     </h6>
-
 
       <?php
 
