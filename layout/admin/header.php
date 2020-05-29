@@ -12,8 +12,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo $path.'bootstrap.min.css' ?>" >
     <link rel="stylesheet" href="<?php echo $path.'custom.css' ?>"  >
+
+        <link rel='stylesheet prefetch'
+          href='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css'>
     <title>Comp Test KC</title>
 </head>
 <body>
+
+  <?php
+require_once('navbar.php');
+  
+  ?>
+
 <div class='row'>
     

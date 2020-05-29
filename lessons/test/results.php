@@ -6,10 +6,36 @@ $type  = 'pdf';
 $files = getQuestions($type);
 ?>
 
+<div class="card col-md-12">
+  <h5 class="card-header"> Test Results </h5>
+  <div class="card-body">
+    <h5 class="card-title">
+    <?php 
+     
+      if ($_GET['r'] > $_GET['w']) {
+        # code...
+        echo 'Impressive results I must say :)';
+
+
+      }else{
+        echo 'You can do better next time (:';
+      }
+
+    ?> 
+    </h5>
+    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ullam dolor fuga rerum qui voluptate ipsa nisi dolorum quisquam! Placeat odit perspiciatis quae maiores eligendi obcaecati tenetur! At, magnam dicta.</p>
+    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+  </div>
+</div>
+
 
 <div class="card " style="width: 30rem; ">
   <div class="card-body">
     <h5 class="card-title">Results</h5>
+
+                <div class=" col-md-12 ">
+        <canvas id="chart-results" class='chart-' width="400" height="400"></canvas>
+            </div>
    
     <p class="card-text">
     <li  class="btn">Total: <span class="text-info"><?php echo $_GET['t']?> </span> </li>
@@ -25,7 +51,7 @@ $files = getQuestions($type);
         $index = 0;
         while($index < count($files) ):
             $row = $files[$index] ;
-            $text = $row['text'];
+            $text = $row['text'];          
             $id = $row['id'];
             $a = $row['a'];
             $b = $row['b'];
@@ -102,10 +128,59 @@ ANSWER :
 
 <?php  endif  ?>
 
+
+
+
+
 <?php
 require_once('../../layout/admin/footer.php')
 
-?>
+?>'
+
+
+
+<script>
+var ctx = document.getElementById('chart-results');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Total', 'Wrong Answers', 'Right Answers',
+        
+          ],
+        datasets: [{
+            label: 'Chart Results',
+            data: [10, 30,50,
+              ],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
 
 
 

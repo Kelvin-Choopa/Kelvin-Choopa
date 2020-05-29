@@ -11,6 +11,19 @@
 
 
   <div class="carousel-inner">
+
+
+<div class="card col-md-12">
+  <h5 class="card-header"> Welcome to KC e-Learning Platform </h5>
+  <div class="card-body">
+    <h5 class="card-title">The world is going digital so should you! - Don't get left behind like 
+      <code> Motorola v360 </code>
+    </h5>
+    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ullam dolor fuga rerum qui voluptate ipsa nisi dolorum quisquam! Placeat odit perspiciatis quae maiores eligendi obcaecati tenetur! At, magnam dicta.</p>
+    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+  </div>
+</div>
+
     <div class="carousel-item active">
       <img src="assets/images/img1.jpg" class="d-block w-100 c-img" alt="...">
       <div class="carousel-caption d-none d-md-block">
@@ -42,6 +55,8 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+
+
 
 
 </div>

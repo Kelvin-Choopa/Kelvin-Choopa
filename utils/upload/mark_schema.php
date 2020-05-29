@@ -7,7 +7,7 @@ require_once('../../layout/admin/header.php');
 
 <div class="card" style="width: 21rem;">
   <div class="card-body">
-    <h5 class="card-title"> Upload Past Papers</h5>
+    <h5 class="card-title"> Upload Mark Schema</h5>
     <h6 class="card-subtitle mb-2 text-muted">
     
 
@@ -53,7 +53,15 @@ require_once('../../layout/admin/header.php');
         <div class="form-group ">
     <label for="description">Month</label>
     <input type="number" name='month' min="1" max="12" step="1" value='' />
+  </div>
 
+
+     <div class="form-group ">
+    <label for="grade">Level</label>
+        <select  class="form-control" name="level" aria-describedby="genderHelp" >
+  <option value='junior'> Junior </option>
+  <option value='senior'> Senior </option>
+    </select>
   </div>
 
 <div class="form-group">

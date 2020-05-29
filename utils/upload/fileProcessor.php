@@ -3,10 +3,7 @@
 
 require_once('../../db/connection.php');
 
-require_once('../../layout/admin/header.php');
-
-
-
+// require_once('../../layout/admin/header.php');
     $conn = DBCoonect();
 
 ?>
@@ -123,18 +120,14 @@ $sql = "INSERT INTO `resources` (`id`, `title`, `link`, `description`,`type`,`cr
                      $ok = 'Done' ;  
                     header('Location:./index.php?err='.$ok);
 
-        exit;
+                die();
+;
 
 }
 
 
 function storeExamResource($conn,$link,$type) {
-
-
     if(isset($_POST['mark_schema'])) return storeMarkResource($conn,$link,$type);
-
-
-
 
 
     $title = $_POST['title'];
@@ -143,10 +136,13 @@ function storeExamResource($conn,$link,$type) {
     $month = strlen($_POST['month']) == 0 ? 0 : ($_POST['month']);
     $created_by = $_SESSION['user']['name'];
 
+    $level = $_POST['level'];
 
 
-$sql = "INSERT INTO `past_papers` (`id`, `title`, `link`, `description`,`year`,`month`,`created_by`)
- VALUES (NULL, '$title', '$link', '$description' ,'$year','$month','$created_by')";
+
+
+$sql = "INSERT INTO `past_papers` (`id`, `title`, `link`, `description`,`year`,`month`,`created_by`,`level`)
+ VALUES (NULL, '$title', '$link', '$description' ,'$year','$month','$created_by','$level')";
 
  mysqli_query($conn,$sql) or die(mysqli_error($conn));
 
@@ -154,7 +150,7 @@ $sql = "INSERT INTO `past_papers` (`id`, `title`, `link`, `description`,`year`,`
                      $ok = 'Done' ;  
                     header('Location:./past_papers.php?err='.$ok);
 
-        exit;
+        die();
 
 }
 
@@ -165,13 +161,14 @@ function storeMarkResource($conn,$link,$type) {
     $title = $_POST['title'];
     $description = $_POST['description'];
     $year = $_POST['year'];
+    $level = $_POST['level'];
     $month = strlen($_POST['month']) == 0 ? 0 : ($_POST['month']);
     $created_by = $_SESSION['user']['name'];
 
 
 
-$sql = "INSERT INTO `mark_schema` (`id`, `title`, `link`, `description`,`year`,`month`,`created_by`)
- VALUES (NULL, '$title', '$link', '$description' ,'$year','$month','$created_by')";
+$sql = "INSERT INTO `mark_schema` (`id`, `title`, `link`, `description`,`year`,`month`,`created_by`,`level`)
+ VALUES (NULL, '$title', '$link', '$description' ,'$year','$month','$created_by','$level')";
 
  mysqli_query($conn,$sql) or die(mysqli_error($conn));
 
@@ -179,7 +176,8 @@ $sql = "INSERT INTO `mark_schema` (`id`, `title`, `link`, `description`,`year`,`
                      $ok = 'Done' ;  
                     header('Location:./mark_schema.php?err='.$ok);
 
-        exit;
+                die();
+;
 
 }
 

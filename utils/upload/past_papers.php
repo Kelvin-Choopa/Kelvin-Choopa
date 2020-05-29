@@ -12,13 +12,9 @@ require_once('../../layout/admin/header.php');
     
 
 <span class="badge badge-pill badge-success">Pdf (Past papers)</span>
-
     
     </h6>
-
-
       <?php
-
       if(isset($_GET['err'])):
     ?>
 
@@ -28,10 +24,7 @@ require_once('../../layout/admin/header.php');
     ?>
 
       </blockquote>
-
-
     <?php endif ?>
-   
 
 <form action="fileProcessor.php" method="post" enctype="multipart/form-data">
 
@@ -56,6 +49,14 @@ require_once('../../layout/admin/header.php');
     <label for="description">Month</label>
     <input type="number" name='month' min="1" max="12" step="1" value='' />
 
+  </div>
+
+       <div class="form-group ">
+    <label for="grade">Level</label>
+        <select  class="form-control" name="level" aria-describedby="genderHelp" >
+  <option value='junior'> Junior </option>
+  <option value='senior'> Senior </option>
+    </select>
   </div>
 
 <div class="form-group">

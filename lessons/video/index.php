@@ -7,7 +7,15 @@ $files = getFiles($type);
 
 ?>
 
-<button class='btn'></button>
+<div class="card col-md-12">
+  <h5 class="card-header"> Video Resources </h5>
+  <div class="card-body">
+    <h5 class="card-title">View tutorials that matter</h5>
+    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ullam dolor fuga rerum qui voluptate ipsa nisi dolorum quisquam! Placeat odit perspiciatis quae maiores eligendi obcaecati tenetur! At, magnam dicta.</p>
+    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+  </div>
+</div>
+
 
 <?php  if(count($files)):
         $index = 0;
@@ -38,28 +46,21 @@ Your browser does not support the video tag.
 </video>
     <!-- <embed src="<?php echo $path;  ?>" width="400" height="200" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"> -->
 
-
  
-    <a href="#" class="card-link">View </a>
-    <a href="#" class="card-link"> Download</a>
+    <a href="<?php echo $path;  ?>" target='_blank' class="card-link">View </a>
+    <a href="<?php echo $path;  ?>" target='_blank' class="card-link" download>Download </a>
+
     <hr />
         <h6 class="card-subtitle mb-2 text-muted">
     Downloads :<?php echo $downloads?></h6>
   </div>
 </div>
-
-
-
         <?php $index++; endwhile;   else:  ?>
-
 
 <?php  endif  ?>
 
-
-
 <?php
 require_once('../../layout/admin/footer.php')
-
 ?>
 
 

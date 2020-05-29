@@ -33,6 +33,66 @@ function getFiles($type){
     //    var_dump($rows);
     return $rows;
 }
+function getPastPapers(){
+    $conn = DBCoonect();
+
+       $grade = isset($_SESSION['user']['grade']) ? $_SESSION['user']['grade']: 'junior' ;
+       $level = $grade > 9 ? 'senior' : 'junior';
+
+           if (isset($_GET['month']) && isset($_GET['year'])) {
+           $month = $_GET['month'];
+           $year = $_GET['year'];
+
+       $sql = "SELECT * FROM past_papers WHERE `month` = '$month' AND `year` = '$year' AND `level` = '$level' ";
+
+           }else{
+       $sql = "SELECT * FROM past_papers WHERE `level` = '$level' ";
+
+           }
+    
+    
+    $results = mysqli_query($conn,$sql);
+    
+    $rows = [];
+    
+    while ($row = mysqli_fetch_assoc($results)) {
+        # code...
+        
+        array_unshift($rows,$row);
+    }
+    //    var_dump($rows);
+    return $rows;
+}
+
+function getMarkSchema(){
+    $conn = DBCoonect();
+
+       $grade = isset($_SESSION['user']['grade']) ? $_SESSION['user']['grade']: 'junior' ;
+       $level = $grade > 9 ? 'senior' : 'junior';
+
+       if (isset($_GET['month']) && isset($_GET['year'])) {
+           $month = $_GET['month'];
+           $year = $_GET['year'];
+
+       $sql = "SELECT * FROM mark_schema WHERE `month` = '$month' AND `year` = '$year' AND `level` = '$level' ";
+
+       }else{
+       $sql = "SELECT * FROM mark_schema WHERE `level` = '$level' ";
+       }
+    
+    
+    $results = mysqli_query($conn,$sql);
+    
+    $rows = [];
+    
+    while ($row = mysqli_fetch_assoc($results)) {
+        # code...
+        
+        array_unshift($rows,$row);
+    }
+    //    var_dump($rows);
+    return $rows;
+}
 
 function getQuestions(){
     $conn = DBCoonect();

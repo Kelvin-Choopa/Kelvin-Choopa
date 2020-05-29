@@ -7,6 +7,15 @@ $files = getQuestions($type);
 
 ?>
 
+<div class="card col-md-12">
+  <h5 class="card-header"> IQ Test </h5>
+  <div class="card-body">
+    <h5 class="card-title">Check your worthy</h5>
+    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ullam dolor fuga rerum qui voluptate ipsa nisi dolorum quisquam! Placeat odit perspiciatis quae maiores eligendi obcaecati tenetur! At, magnam dicta.</p>
+    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+  </div>
+</div>
+
 <form action="../api/index.php" method="post" enctype="multipart/form-data">
   <input class="" type="hidden" name="test-questions"  value="test-questions">
 
@@ -79,7 +88,7 @@ D
         <?php $index++; endwhile;   else:  ?>
 
 <?php  endif  ?>
-<button>  Upload </button>
+<button>  Submit </button>
 </form>
 
 <?php

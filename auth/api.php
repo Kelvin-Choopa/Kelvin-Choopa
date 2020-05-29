@@ -73,10 +73,10 @@ function register($conn) {
 
 
 
-$sql = "INSERT INTO `users` (`id`, `name`, `email`, `dob`, `school`, `level`, `grade`, `password`, `gender`)
- VALUES (NULL, '$name', '$email', '$dob', '$school', '$level', '$grade', MD5('$password'), '$gender')";
+$sql = "INSERT INTO `users` (`id`, `name`, `email`, `dob`, `school`, `grade`, `password`, `gender`)
+ VALUES (NULL, '$name', '$email', '$dob', '$school',  '$grade', MD5('$password'), '$gender')";
 
- mysqli_query($conn,$sql) or header('Location: regiser.php?err='.mysqli_error($conn));
+ mysqli_query($conn,$sql) or header('Location: register.php?err='.mysqli_error($conn));
          echo "<script> location.href='login.php'; </script>";
         exit;
 

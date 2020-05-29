@@ -3,12 +3,18 @@
 require_once('../layout/admin/header.php');
 ?>
 
+<div class="card col-md-12">
+  <h5 class="card-header"> Register </h5>
+  <div class="card-body">
+    <h5 class="card-title">Become part of the KC computer community </h5>
+    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ullam dolor fuga rerum qui voluptate ipsa nisi dolorum quisquam! Placeat odit perspiciatis quae maiores eligendi obcaecati tenetur! At, magnam dicta.</p>
+    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+  </div>
+</div>
+
   <div class="row">
 
   <div class="col-md-10 offset-md-2">
-
-
-
 
 <form class='' action='api.php' method='post'>
 
@@ -48,16 +54,21 @@ require_once('../layout/admin/header.php');
     <label for="school">school</label>
     <input type="school" class="form-control" name="school" aria-describedby="schoolHelp" />
   </div>
+
       <div class="form-group ">
     <label for="grade">grade</label>
-    <input type="number" class="form-control" name="grade" aria-describedby="gradeHelp" />
+        <select  class="form-control" name="grade" aria-describedby="genderHelp" >
+
+  <option> 8 </option>
+  <option> 9 </option>
+  <option> 10 </option>
+  <option> 11 </option>
+  <option> 12 </option>
+
+    </select>
   </div>
 
 
-      <div class="form-group ">
-    <label for="level">level</label>
-    <input type="number" class="form-control" name="level" aria-describedby="levelHelp" />
-  </div>
 
       <div class="form-group ">
     <label for="dob">Date of Birth</label>

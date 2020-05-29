@@ -5,6 +5,15 @@ require_once('./api.php');
 
 ?>
 
+<div class="card col-md-12">
+  <h5 class="card-header"> Create Test Answers </h5>
+  <div class="card-body">
+    <h5 class="card-title">Become part of the KC computer community </h5>
+    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ullam dolor fuga rerum qui voluptate ipsa nisi dolorum quisquam! Placeat odit perspiciatis quae maiores eligendi obcaecati tenetur! At, magnam dicta.</p>
+    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+  </div>
+</div>
+
   <div class="row">
   <div class="col-md-10 offset-md-2">
 <form class='' action='api.php' method='post'>

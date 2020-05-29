@@ -2,6 +2,15 @@
 require_once('../layout/admin/header.php');
 ?>
 
+<div class="card col-md-12">
+  <h5 class="card-header"> Login </h5>
+  <div class="card-body">
+    <h5 class="card-title">Have access to limitless Computer Resources </h5>
+    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ullam dolor fuga rerum qui voluptate ipsa nisi dolorum quisquam! Placeat odit perspiciatis quae maiores eligendi obcaecati tenetur! At, magnam dicta.</p>
+    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+  </div>
+</div>
+
   <div class="row">
 
   <div class="col-md-10 offset-md-2">
