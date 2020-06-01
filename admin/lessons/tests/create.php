@@ -24,6 +24,7 @@ require_once('./api.php');
     <div class="list-group" id="list-tab" role="tablist">
       <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Multiple Choice</a>
       <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">One Word Answer</a>
+      <a class="list-group-item list-group-item-action" id="list-true-false" data-toggle="list" href="#true-false-tab" role="tab" aria-controls="profile">True/False</a>
     </div>
   </div>
   <div class="col-8">
@@ -57,7 +58,7 @@ require_once('./api.php');
     <?php endif ?>
 
     <input type="hidden" class="form-control" name="createQuestion" value='createQuestion' />
-    <input type="hidden" class="form-control" name="type" value='multiple_choice' />
+    <input type="hidden" class="form-control" name="type" value='multiple-choice' />
 
 
       <div class="form-group ">
@@ -122,13 +123,117 @@ require_once('./api.php');
 
               <!--  one word start  -->
 
+               <div class="card" style="width: 21rem;">
+  <div class="card-body">
+    <h5 class="card-title"> Create One Word Question</h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+
+<form class='' action='api.php' method='post'>
+    <input type="hidden" class="form-control" name="create-one-word-question" aria-describedby="textHelp" />
+
+    <?php
+      if(isset($_GET['msg'])):
+
+    ?>
+
+      <blockquote class='text-danger'>
+         <?php
+     echo $_GET['msg'];
+    ?>
+
+      </blockquote>
 
 
+    <?php endif ?>
 
+    <input type="hidden" class="form-control" name="createQuestion" value='createQuestion' />
+    <input type="hidden" class="form-control" name="type" value='one-word' />
+      <div class="form-group ">
+    <label for="name">Question</label>
+    <input type="text" class="form-control" name="text" aria-describedby="textHelp" />
+  </div>
+
+     <div class="form-group ">
+    <label for="gender">Answer</label>
+    <input type="text" class="form-control" name="answer" aria-describedby="textHelp" />
+  </div>
+     <div class="form-group ">
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+
+
+</form>
               <!--  one word end  -->
+      </div>
+      </div>
+      </div>
+
+
+
+      <div class="tab-pane fade" id="true-false-tab" role="tabpanel" aria-labelledby="list-profile-list">
+      
+
+              <!--  true/false start  -->
+               <div class="card" style="width: 21rem;">
+  <div class="card-body">
+    <h5 class="card-title"> Create True/False Question</h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+
+
+<form class='' action='api.php' method='post'>
+    <input type="hidden" class="form-control" name="create-true-false-question" value='true-false' />
+
+
+    <?php
+      if(isset($_GET['msg'])):
+
+    ?>
+
+      <blockquote class='text-danger'>
+         <?php
+     echo $_GET['msg'];
+    ?>
+
+      </blockquote>
+
+
+    <?php endif ?>
+
+    <input type="hidden" class="form-control" name="createQuestion" value='createQuestion' />
+    <input type="hidden" class="form-control" name="type" value='true-false' />
+
+
+      <div class="form-group ">
+    <label for="name">Question</label>
+    <input type="text" class="form-control" name="text" aria-describedby="textHelp" />
+  </div>
+
+  
+
+     <div class="form-group ">
+    <label for="gender">Answer</label>
+    <select  class="form-control" name="answer" aria-describedby="genderHelp" >
+  <option value='true' > True </option>
+  <option value='false' > False </option>
+    </select>
+  </div>
+
+     <div class="form-group ">
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+
+
+</form>
+
+
+              <!--  true/false end  -->
 
 
       </div>
+      </div>
+      </div>
+
 
     </div>
   </div>
@@ -162,8 +267,6 @@ require_once('./api.php');
 
 
 
-         <!-- ONE WORD ANSWER start  !-->
-         <!-- ONE WORD ANSWER end !-->
 
 
 

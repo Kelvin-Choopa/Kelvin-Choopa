@@ -131,7 +131,7 @@ function markTest(){
                 $row = $questions[$index];
                  $id = $row['id'];    
                  $rightAns = strtolower($row['answer']);
-            $studentAns= $_POST["$id-question"];
+            $studentAns= strtolower($_POST["$id-question"]) ;
 
             if($rightAns === $studentAns){
                 $corrrectAns++;

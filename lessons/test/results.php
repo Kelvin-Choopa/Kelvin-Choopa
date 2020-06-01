@@ -68,6 +68,9 @@ $files = getQuestions($type);
     <p class="card-text">
     <?php echo $text?>
     </p>
+    <?php 
+    if($row['type'] === 'multiple-choice'):
+    ?>
 
             <div class="form-check form-check-inline">
   <label class="form-check-label" for="inlineRadio1">
@@ -98,6 +101,7 @@ C
   
   </label>
 </div>
+
 <div class="form-check form-check-inline">
   <label class="form-check-label" for="d">
 D  
@@ -109,6 +113,42 @@ D
   
   </label>
 </div>
+    <?php 
+    
+    endif;
+    ?>
+
+        <?php 
+    if($row['type'] === 'true-false'):
+    ?>
+<div class="form-check form-check-inline">
+  <label class="form-check-label" for="d">
+
+</label>
+  <input class="form-check-input" readonly type="radio" name="<?php echo $id?>-question" id="inlineRadio2" value="d">
+  <label class="form-check-label" for="inlineRadio2">
+  
+True
+  
+  </label>
+</div>
+
+<div class="form-check form-check-inline">
+  <label class="form-check-label" for="d">
+
+</label>
+  <input class="form-check-input" readonly type="radio" name="<?php echo $id?>-question" id="inlineRadio2" value="d">
+  <label class="form-check-label" for="inlineRadio2">
+  
+False
+  
+  </label>
+</div>
+
+        <?php 
+    
+    endif;
+    ?>
 
 
 <div class="form-check form-check-inline">
@@ -123,21 +163,11 @@ ANSWER :
  
   </div>
 </div>
-
         <?php $index++; endwhile;   else:  ?>
-
 <?php  endif  ?>
-
-
-
-
-
 <?php
 require_once('../../layout/admin/footer.php')
-
-?>'
-
-
+?>
 
 <script>
 var ctx = document.getElementById('chart-results');
@@ -149,22 +179,22 @@ var myChart = new Chart(ctx, {
           ],
         datasets: [{
             label: 'Chart Results',
-            data: [10, 30,50,
+            data: [<?php echo $_GET['t'] ?>, <?php echo $_GET['w'] ?>,<?php echo $_GET['r'] ?>,
               ],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'green',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 159, 64, 0.2)'
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
                 'rgba(54, 162, 235, 1)',
+                'rgba(255, 99, 132, 1)',
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
+                'rgba(153, 102, 255,1)',
                 'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1

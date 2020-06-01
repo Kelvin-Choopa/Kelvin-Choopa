@@ -7,9 +7,15 @@ require_once(__DIR__.'../../../../db/connection.php');
 
 
 
-if (isset($_POST['createQuestion'])) {
+if (isset($_POST['create-one-word-question'])) {
+    createOneWordQuestion($conn);
 
+}
+else if (isset($_POST['create-true-false-question'])) {
+    createTrueFalseQuestion($conn);
 
+}
+else if (isset($_POST['createQuestion'])) {
     createQuestion($conn);
 
 }elseif (isset($_POST['createAnswer'])) {
@@ -24,14 +30,14 @@ if (isset($_POST['createQuestion'])) {
 //FUNCTIONS
 
 
-function createQuestion($conn) {
+function  createQuestion($conn) {
 
     $type = $_POST['type'];
     $text = $_POST['text'];
-    $a = $_POST['a'];
-    $b = $_POST['b'];
-    $c = $_POST['c'];
-    $d = $_POST['d'];
+    $a = 'null';
+    $b = 'null';
+    $c = 'null';
+    $d = 'null';
     $answer = $_POST['answer'];
     $created_by = $_SESSION['user']['name'];
 
@@ -46,22 +52,64 @@ VALUES (NULL, '$type', '$text', '$answer', '$created_by', current_timestamp(), N
 
 }
 
-
-function createAnswer($conn) {
+function createTrueFalseQuestion($conn) {
 
     $type = $_POST['type'];
     $text = $_POST['text'];
-    $options = $_POST['options'];
+    $a = 'null';
+    $b = 'null';
+    $c = 'null';
+    $d = 'null';
+    $answer = $_POST['answer'];
     $created_by = $_SESSION['user']['name'];
 
 
-$sql = "INSERT INTO `answers` ( `text`, `type`, `options`,  `created_at`, `updated_at`,`created_by`)
- VALUES ( '$type', '$type', '$options',  current_timestamp(), NULL,'$created_by');";
+$sql = "INSERT INTO `questions` (`id`, `type`, `text`, `answer`, `created_by`, `created_at`, `updated_at`,`a`,`b`,`c`,`d`) 
+VALUES (NULL, '$type', '$text', '$answer', '$created_by', current_timestamp(), NULL,'$a','$b','$c','$d');";
 
- mysqli_query($conn,$sql) or header('Location: create_answer.php?msg='.mysqli_error($conn));
-         echo "<script> location.href='create_answer.php?msg=Done'; </script>";
+ mysqli_query($conn,$sql) or header('Location: create.php?msg='.mysqli_error($conn));
+
+         echo "<script> location.href='create.php?msg=Done'; </script>";
+        exit;
+
+}
+
+function createOneWordQuestion($conn) {
+
+    $type = 'one-word';
+    $text = $_POST['text'];
+    $a = null;
+    $b = null;
+    $c = null;
+    $d = null;
+    $answer = $_POST['answer'];
+    $created_by = $_SESSION['user']['name'];
+
+$sql = "INSERT INTO `questions` (`id`, `type`, `text`, `answer`, `created_by`, `created_at`, `updated_at`,`a`,`b`,`c`,`d`) 
+VALUES (NULL, '$type', '$text', '$answer', '$created_by', current_timestamp(), NULL,'$a','$b','$c','$d');";
+
+ mysqli_query($conn,$sql) or header('Location: create.php?msg='.mysqli_error($conn));
+
+         echo "<script> location.href='create.php?msg=Done&type=$type'; </script>";
         exit;
 }
+
+
+// function createQuestion($conn) {
+
+//     $type = $_POST['type'];
+//     $text = $_POST['text'];
+//     $options = $_POST['options'];
+//     $created_by = $_SESSION['user']['name'];
+
+
+// $sql = "INSERT INTO `answers` ( `text`, `type`, `options`,  `created_at`, `updated_at`,`created_by`)
+//  VALUES ( '$type', '$type', '$options',  current_timestamp(), NULL,'$created_by');";
+
+//  mysqli_query($conn,$sql) or header('Location: create_answer.php?msg='.mysqli_error($conn));
+//          echo "<script> location.href='create_answer.php?msg=Done'; </script>";
+//         exit;
+// }
 
 
 

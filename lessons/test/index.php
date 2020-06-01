@@ -7,7 +7,7 @@ $files = getQuestions($type);
 
 ?>
 
-<div class="card col-md-12">
+<div class="card ">
   <h5 class="card-header"> IQ Test </h5>
   <div class="card-body">
     <h5 class="card-title">Check your worthy</h5>
@@ -34,12 +34,16 @@ $files = getQuestions($type);
         
     ?>
 
-<div class="card" style="width: 90rem;">
+<div class="card" style="width: 80rem;">
   <div class="card-body">
     <h5 class="card-title"><?php echo $index+1?></h5>
     <p class="card-text">
     <?php echo $text?>
     </p>
+
+        <?php 
+    if($row['type'] === 'multiple-choice'):
+    ?>
 
             <div class="form-check form-check-inline">
   <label class="form-check-label" for="inlineRadio1">
@@ -73,6 +77,9 @@ C
 <div class="form-check form-check-inline">
   <label class="form-check-label" for="d">
 D  
+
+
+
 </label>
   <input class="form-check-input" type="radio" name="<?php echo $id?>-question" id="inlineRadio2" value="d">
   <label class="form-check-label" for="inlineRadio2">
@@ -81,6 +88,40 @@ D
   
   </label>
 </div>
+  
+    
+        <?php 
+    elseif($row['type'] === 'true-false'):
+    ?>
+<div class="form-check form-check-inline">
+  <label class="form-check-label" for="d">
+        True
+</label>
+  <input class="form-check-input" type="radio" name="<?php echo $id?>-question" id="inlineRadio2" value="true">
+  <label class="form-check-label" for="inlineRadio2">
+
+  
+  </label>
+</div>
+<div class="form-check form-check-inline">
+  <label class="form-check-label" for="d">
+        False
+</label>
+  <input class="form-check-input" type="radio" name="<?php echo $id?>-question" id="inlineRadio2" value="false">
+
+</div>
+
+    <?php 
+    else:
+    ?>
+
+    <div class="form-group">
+  <input placeholder='Type Your Answer' class="form-control" type="text" name="<?php echo $id?>-question"  value="">
+</div>
+
+       <?php 
+    endif;
+    ?>
  
   </div>
 </div>
