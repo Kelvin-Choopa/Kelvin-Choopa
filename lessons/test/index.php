@@ -31,12 +31,29 @@ $files = getQuestions($type);
             $d = $row['d'];
             $ans = $row['answer'];
 
+            $editPath = '/comp_test/admin/lessons/tests/edit_test.php?id='.$id;
         
     ?>
 
 <div class="card" style="width: 80rem;">
   <div class="card-body">
-    <h5 class="card-title"><?php echo $index+1?></h5>
+    <h5 class="card-title"><?php echo $index+1?>
+    
+            <?php
+                        if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'):
+            
+            ?>
+    <a href="<?php echo $editPath;  ?>"  class="push-right" >Edit </a>
+
+           <?php
+      endif;
+?>
+    
+
+
+
+    
+    </h5>
     <p class="card-text">
     <?php echo $text?>
     </p>
@@ -124,6 +141,10 @@ D
     ?>
  
   </div>
+  
+
+
+
 </div>
 
         <?php $index++; endwhile;   else:  ?>

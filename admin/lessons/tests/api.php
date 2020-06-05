@@ -140,3 +140,14 @@ $sql = "SELECT * FROM answers  ";
 
 }
 
+
+
+function getQuestion($id){
+    $conn = DBCoonect();
+
+       $sql = "SELECT * FROM questions WHERE `id` = '$id'";
+    
+    $results = mysqli_query($conn,$sql);
+   return mysqli_fetch_assoc($results);
+}
+
