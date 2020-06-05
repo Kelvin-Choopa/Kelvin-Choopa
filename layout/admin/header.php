@@ -1,7 +1,9 @@
 <?php
 //   $path =  $_SERVER['REQUEST_URI'];
-        session_start();
-    
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
       $path = "/comp_test/assets/css/";
 ?>
 

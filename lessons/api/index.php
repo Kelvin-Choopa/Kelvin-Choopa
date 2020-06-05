@@ -1,5 +1,8 @@
 <?php
-//session_start();
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 require_once(__DIR__.'../../../db/connection.php');
 
@@ -39,7 +42,10 @@ function getPastPapers(){
        $grade = isset($_SESSION['user']['grade']) ? $_SESSION['user']['grade']: 'junior' ;
        $level = $grade > 9 ? 'senior' : 'junior';
 
-           if (isset($_GET['month']) && isset($_GET['year'])) {
+            if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'){
+       $sql = "SELECT * FROM past_papers ";
+
+            }elseif (isset($_GET['month']) && isset($_GET['year'])) {
            $month = $_GET['month'];
            $year = $_GET['year'];
 
@@ -70,7 +76,11 @@ function getMarkSchema(){
        $grade = isset($_SESSION['user']['grade']) ? $_SESSION['user']['grade']: 'junior' ;
        $level = $grade > 9 ? 'senior' : 'junior';
 
-       if (isset($_GET['month']) && isset($_GET['year'])) {
+               if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'){
+
+       $sql = "SELECT * FROM mark_schema ";
+
+               }else if (isset($_GET['month']) && isset($_GET['year'])) {
            $month = $_GET['month'];
            $year = $_GET['year'];
 
@@ -96,8 +106,28 @@ function getMarkSchema(){
 
 function getQuestions(){
     $conn = DBCoonect();
+
+          $grade = isset($_SESSION['user']['grade']) ? $_SESSION['user']['grade']: 'junior' ;
+       $level = $grade > 9 ? 'senior' : 'junior';
+
+               if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'){
+       $sql = "SELECT * FROM questions ";
+
+
+
+               }else if (isset($_GET['month']) && isset($_GET['year'])) {
+           $month = $_GET['month'];
+           $year = $_GET['year'];
+
+       $sql = "SELECT * FROM questions WHERE `month` = '$month' AND `year` = '$year' AND `level` = '$level' ";
+
+       }else{
+       $sql = "SELECT * FROM questions WHERE `level` = '$level' ";
+       }
+
+
     
-    $sql = "SELECT * FROM questions   ";
+  
     
     $results = mysqli_query($conn,$sql);
     

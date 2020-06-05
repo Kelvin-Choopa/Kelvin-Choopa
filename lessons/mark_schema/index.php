@@ -24,14 +24,18 @@ $files = getMarkSchema();
             $downloads = $row['downloads'];
             $description = $row['description'];
             $file = ($row['link']) ;
+            $id = $row['id'];
+
              $fileStorage =  getFileStoragePath();
 
             $path = ($fileStorage.$file) ;
 
            $month = $row['month'];
            $year = $row['year'];
+            $editPath = '/comp_test/utils/upload/edit_mark_schema.php?id='.$id;
 
-           $pastPaperLink = "/comp_test/lessons/past_papers?month=$month&year=$year";
+
+           $pastPaperLink = "/comp_test/lessons/mark_schema?month=$month&year=$year";
         
     ?>
 
@@ -47,6 +51,15 @@ $files = getMarkSchema();
  
     <a href="<?php echo $path;  ?>" target='_blank' class="card-link">View </a>
     <a href="<?php echo $path;  ?>" target='_blank' class="card-link" download>Download </a>
+            <?php
+                        if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'):
+            
+            ?>
+    <a href="<?php echo $editPath;  ?>"  class="card-link" >Edit </a>
+
+           <?php
+      endif;
+?>
  
 
     <hr />

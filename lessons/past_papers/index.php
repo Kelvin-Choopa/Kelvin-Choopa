@@ -22,6 +22,7 @@ $files = getPastPapers();
         while($index < count($files) ):
             $row = $files[$index] ;
             $title = $row['title'];
+            $id = $row['id'];
             $downloads = $row['downloads'];
             $description = $row['description'];
             $file = ($row['link']) ;
@@ -32,6 +33,7 @@ $files = getPastPapers();
 
            $month = $row['month'];
            $year = $row['year'];
+            $editPath = '/comp_test/utils/upload/edit_past_paper.php?id='.$id;
 
            $markSchemaLink = "/comp_test/lessons/mark_schema?month=$month&year=$year";
         
@@ -58,7 +60,7 @@ $files = getPastPapers();
                         if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'):
             
             ?>
-    <a href="<?php echo $path;  ?>" target='_blank' class="card-link" download>Edit </a>
+    <a href="<?php echo $editPath;  ?>"  class="card-link" >Edit </a>
 
            <?php
       endif;
