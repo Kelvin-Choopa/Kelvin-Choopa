@@ -107,12 +107,13 @@ function storeResource($conn,$link,$type) {
 
     $title = $_POST['title'];
     $description = $_POST['description'];
+    $level = $_POST['level'];
     $created_by = $_SESSION['user']['name'];
 
 
 
-$sql = "INSERT INTO `resources` (`id`, `title`, `link`, `description`,`type`,`created_by`)
- VALUES (NULL, '$title', '$link', '$description' ,'$type','$created_by')";
+$sql = "INSERT INTO `resources` (`id`, `title`, `link`, `description`,`type`,`created_by`,`level`)
+ VALUES (NULL, '$title', '$link', '$description' ,'$type','$created_by','$level')";
 
  mysqli_query($conn,$sql) or die(mysqli_error($conn));
 

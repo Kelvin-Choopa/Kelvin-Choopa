@@ -104,6 +104,15 @@ require_once('./api.php');
     </select>
   </div>
 
+
+     <div class="form-group ">
+    <label for="grade">Level</label>
+        <select  class="form-control" name="level" aria-describedby="genderHelp" >
+  <option value='junior'> Junior </option>
+  <option value='senior'> Senior </option>
+    </select>
+  </div>
+
      <div class="form-group ">
 
   <button type="submit" class="btn btn-primary">Submit</button>
@@ -157,6 +166,17 @@ require_once('./api.php');
     <label for="gender">Answer</label>
     <input type="text" class="form-control" name="answer" aria-describedby="textHelp" />
   </div>
+
+
+     <div class="form-group ">
+    <label for="grade">Level</label>
+        <select  class="form-control" name="level" aria-describedby="genderHelp" >
+  <option value='junior'> Junior </option>
+  <option value='senior'> Senior </option>
+    </select>
+  </div>
+
+
      <div class="form-group ">
   <button type="submit" class="btn btn-primary">Submit</button>
   </div>
@@ -215,6 +235,14 @@ require_once('./api.php');
     <select  class="form-control" name="answer" aria-describedby="genderHelp" >
   <option value='true' > True </option>
   <option value='false' > False </option>
+    </select>
+  </div>
+
+       <div class="form-group ">
+    <label for="grade">Level</label>
+        <select  class="form-control" name="level" aria-describedby="genderHelp" >
+  <option value='junior'> Junior </option>
+  <option value='senior'> Senior </option>
     </select>
   </div>
 

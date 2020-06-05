@@ -54,6 +54,17 @@ $files = getPastPapers();
     <a href="<?php echo $path;  ?>" target='_blank' class="card-link">View </a>
     <a href="<?php echo $path;  ?>" target='_blank' class="card-link" download>Download </a>
 
+           <?php
+                        if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'):
+            
+            ?>
+    <a href="<?php echo $path;  ?>" target='_blank' class="card-link" download>Edit </a>
+
+           <?php
+      endif;
+?>
+
+
     <hr />
         <h6 class="card-subtitle mb-2 text-muted">
     Downloads :<?php echo $downloads?></h6>

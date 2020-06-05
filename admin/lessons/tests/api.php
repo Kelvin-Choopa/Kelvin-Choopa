@@ -34,6 +34,8 @@ function  createQuestion($conn) {
 
     $type = $_POST['type'];
     $text = $_POST['text'];
+    $level = $_POST['level'];
+
     $a = 'null';
     $b = 'null';
     $c = 'null';
@@ -42,8 +44,8 @@ function  createQuestion($conn) {
     $created_by = $_SESSION['user']['name'];
 
 
-$sql = "INSERT INTO `questions` (`id`, `type`, `text`, `answer`, `created_by`, `created_at`, `updated_at`,`a`,`b`,`c`,`d`) 
-VALUES (NULL, '$type', '$text', '$answer', '$created_by', current_timestamp(), NULL,'$a','$b','$c','$d');";
+$sql = "INSERT INTO `questions` (`id`, `type`, `text`, `answer`, `created_by`, `created_at`, `updated_at`,`a`,`b`,`c`,`d`,`level`) 
+VALUES (NULL, '$type', '$text', '$answer', '$created_by', current_timestamp(), NULL,'$a','$b','$c','$d','$level');";
 
  mysqli_query($conn,$sql) or header('Location: create.php?msg='.mysqli_error($conn));
 
@@ -56,6 +58,8 @@ function createTrueFalseQuestion($conn) {
 
     $type = $_POST['type'];
     $text = $_POST['text'];
+    $level = $_POST['level'];
+
     $a = 'null';
     $b = 'null';
     $c = 'null';
@@ -64,8 +68,8 @@ function createTrueFalseQuestion($conn) {
     $created_by = $_SESSION['user']['name'];
 
 
-$sql = "INSERT INTO `questions` (`id`, `type`, `text`, `answer`, `created_by`, `created_at`, `updated_at`,`a`,`b`,`c`,`d`) 
-VALUES (NULL, '$type', '$text', '$answer', '$created_by', current_timestamp(), NULL,'$a','$b','$c','$d');";
+$sql = "INSERT INTO `questions` (`id`, `type`, `text`, `answer`, `created_by`, `created_at`, `updated_at`,`a`,`b`,`c`,`d`,`level`) 
+VALUES (NULL, '$type', '$text', '$answer', '$created_by', current_timestamp(), NULL,'$a','$b','$c','$d','$level');";
 
  mysqli_query($conn,$sql) or header('Location: create.php?msg='.mysqli_error($conn));
 
@@ -82,11 +86,13 @@ function createOneWordQuestion($conn) {
     $b = null;
     $c = null;
     $d = null;
+    $level = $_POST['level'];
+
     $answer = $_POST['answer'];
     $created_by = $_SESSION['user']['name'];
 
-$sql = "INSERT INTO `questions` (`id`, `type`, `text`, `answer`, `created_by`, `created_at`, `updated_at`,`a`,`b`,`c`,`d`) 
-VALUES (NULL, '$type', '$text', '$answer', '$created_by', current_timestamp(), NULL,'$a','$b','$c','$d');";
+$sql = "INSERT INTO `questions` (`id`, `type`, `text`, `answer`, `created_by`, `created_at`, `updated_at`,`a`,`b`,`c`,`d`,`level`) 
+VALUES (NULL, '$type', '$text', '$answer', '$created_by', current_timestamp(), NULL,'$a','$b','$c','$d','$level');";
 
  mysqli_query($conn,$sql) or header('Location: create.php?msg='.mysqli_error($conn));
 

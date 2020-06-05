@@ -46,6 +46,13 @@ require_once('../../layout/admin/header.php');
     <input type="description" class="form-control" name="description" aria-describedby="nameHelp" />
   </div>
 
+     <div class="form-group ">
+    <label for="grade">Level</label>
+        <select  class="form-control" name="level" aria-describedby="genderHelp" >
+  <option value='junior'> Junior </option>
+  <option value='senior'> Senior </option>
+    </select>
+  </div>
 
 <div class="form-group">
   <label for="exampleFormControlFile1">Click to upload</label>

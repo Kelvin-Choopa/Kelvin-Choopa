@@ -16,6 +16,9 @@ if (isset($_POST['regiser'])) {
     # code...
 
     login($conn);
+}elseif (isset($_GET['logout'])) {
+    logout();
+    # code...
 }
 
 
@@ -77,6 +80,17 @@ $sql = "INSERT INTO `users` (`id`, `name`, `email`, `dob`, `school`, `grade`, `p
  VALUES (NULL, '$name', '$email', '$dob', '$school',  '$grade', MD5('$password'), '$gender')";
 
  mysqli_query($conn,$sql) or header('Location: register.php?err='.mysqli_error($conn));
+         echo "<script> location.href='login.php'; </script>";
+        exit;
+
+}
+
+
+
+
+function logout(){
+        session_start();
+        session_destroy();
          echo "<script> location.href='login.php'; </script>";
         exit;
 
