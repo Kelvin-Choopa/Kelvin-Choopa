@@ -11,7 +11,8 @@ $row = getQuestion($id);
             $b = $row['b'];
             $c = $row['c'];
             $d = $row['d'];
-            $ans = $row['answer'];
+            $answer = $row['answer'];
+            $level = $row['level'];
             $type = $row['type'];
 
 ?>

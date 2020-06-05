@@ -33,7 +33,8 @@
     <h5 class="card-title"> Edit True / False Question</h5>
 
 <form class='' action='api.php' method='post'>
-    <input type="hidden" class="form-control" name="create-true-false-question" value='true-false' />
+<input type="hidden" class="form-control" name="edit-question" aria-describedby="textHelp" />
+<input type="hidden" class="form-control" value="<? echo $id?>" name="id" aria-describedby="textHelp" />
 
 
     <?php
@@ -51,13 +52,11 @@
 
     <?php endif ?>
 
-    <input type="hidden" class="form-control" name="createQuestion" value='createQuestion' />
-    <input type="hidden" class="form-control" name="type" value='true-false' />
 
 
       <div class="form-group ">
     <label for="name">Question</label>
-    <input type="text" class="form-control" name="text" aria-describedby="textHelp" />
+    <input type="text" value="<? echo $text?>" class="form-control" name="text" aria-describedby="textHelp" />
   </div>
 
   
@@ -65,16 +64,19 @@
      <div class="form-group ">
     <label for="gender">Answer</label>
     <select  class="form-control" name="answer" aria-describedby="genderHelp" >
-  <option value='true' > True </option>
-  <option value='false' > False </option>
+  <option <?  if($answer == 'true') echo 'selected'  ?>   value='true'> True </option>
+  <option <?  if($answer == 'false') echo 'selected'  ?>  value='false'> False </option>
     </select>
   </div>
 
+ 
        <div class="form-group ">
     <label for="grade">Level</label>
-        <select  class="form-control" name="level" aria-describedby="genderHelp" >
-  <option value='junior'> Junior </option>
-  <option value='senior'> Senior </option>
+        <select  class="form-control"  selected="<? echo $level ?>" name="level" aria-describedby="genderHelp" >
+
+
+  <option <?  if($level == 'junior') echo 'selected'  ?>   value='junior'> Junior </option>
+  <option <?  if($level == 'senior') echo 'selected'  ?>  value='senior'> Senior </option>
     </select>
   </div>
 

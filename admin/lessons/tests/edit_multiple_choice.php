@@ -25,6 +25,8 @@
     <h5 class="card-title"> Create Multiple Choice Question</h5>
 
 <form class='' action='api.php' method='post'>
+<input type="hidden" class="form-control" name="edit-question" aria-describedby="textHelp" />
+<input type="hidden" class="form-control" value="<? echo $id?>" name="id" aria-describedby="textHelp" />
 
     <?php
       if(isset($_GET['msg'])):
@@ -41,65 +43,69 @@
 
     <?php endif ?>
 
-    <input type="hidden" class="form-control" name="createQuestion" value='createQuestion' />
-    <input type="hidden" class="form-control" name="type" value='multiple-choice' />
 
 
       <div class="form-group ">
     <label for="name">Question</label>
-    <input type="text" class="form-control" name="text" aria-describedby="textHelp" />
+    <input type="text" class="form-control" value="<? echo $text?>" name="text" aria-describedby="textHelp" />
   </div>
 
    <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">A</span>
   </div>
-  <input type="text" name='a' class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+  <input type="text" name='a' value="<? echo $a?>" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
 </div>
 
    <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">B</span>
   </div>
-  <input type="text" name='b' class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+  <input type="text" name='b' value="<? echo $b?>" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
 </div>
 
    <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">C</span>
   </div>
-  <input type="text" name='c' class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+  <input type="text" name='c' value="<? echo $c?>" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
 </div>
 
    <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">D</span>
   </div>
-  <input type="text" name='d' class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+  <input type="text" name='d' value="<? echo $d?>" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
 </div>
 
      <div class="form-group ">
     <label for="gender">Answer</label>
     <select  class="form-control" name="answer" aria-describedby="genderHelp" >
-  <option value='a' > A </option>
-  <option value='b' > B </option>
-  <option value='c'> C </option>
-  <option value='d'> D </option>
+
+
+  <option <?  if($answer == 'a') echo 'selected'  ?>   value='a'> A </option>
+  <option <?  if($answer == 'b') echo 'selected'  ?>   value='b'> B </option>
+  <option <?  if($answer == 'c') echo 'selected'  ?>   value='c'> C </option>
+  <option <?  if($answer == 'd') echo 'selected'  ?>   value='d'> D </option>
+
     </select>
   </div>
 
 
-     <div class="form-group ">
+
+       <div class="form-group ">
     <label for="grade">Level</label>
-        <select  class="form-control" name="level" aria-describedby="genderHelp" >
-  <option value='junior'> Junior </option>
-  <option value='senior'> Senior </option>
+        <select  class="form-control"  selected="<? echo $level ?>" name="level" aria-describedby="genderHelp" >
+
+
+  <option <?  if($level == 'junior') echo 'selected'  ?>   value='junior'> Junior </option>
+  <option <?  if($level == 'senior') echo 'selected'  ?>  value='senior'> Senior </option>
     </select>
   </div>
 
      <div class="form-group ">
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Update</button>
   </div>
 
 

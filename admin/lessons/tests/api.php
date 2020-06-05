@@ -22,6 +22,9 @@ else if (isset($_POST['createQuestion'])) {
     # code...
 
     createAnswer($conn);
+}else if (isset($_POST['edit-question'])) {
+    # code...
+    editQuestion($conn);
 }
 
 
@@ -36,10 +39,10 @@ function  createQuestion($conn) {
     $text = $_POST['text'];
     $level = $_POST['level'];
 
-    $a = 'null';
-    $b = 'null';
-    $c = 'null';
-    $d = 'null';
+    $a = $__POST['a'];
+    $b = $__POST['b'];
+    $c = $__POST['c'];
+    $d = $__POST['d'];
     $answer = $_POST['answer'];
     $created_by = $_SESSION['user']['name'];
 
@@ -100,22 +103,28 @@ VALUES (NULL, '$type', '$text', '$answer', '$created_by', current_timestamp(), N
         exit;
 }
 
+function editQuestion($conn) {
 
-// function createQuestion($conn) {
+    $text = $_POST['text'];
+    $id = $_POST['id'];
+    $a = isset($_POST['a']) ? $_POST['a'] : null;
+    $b = isset($_POST['b']) ? $_POST['b'] : null;
+    $c = isset($_POST['c']) ? $_POST['c'] : null;
+    $d = isset($_POST['d']) ? $_POST['d'] : null;
+  
+    $level = $_POST['level'];
 
-//     $type = $_POST['type'];
-//     $text = $_POST['text'];
-//     $options = $_POST['options'];
-//     $created_by = $_SESSION['user']['name'];
+    $answer = $_POST['answer'];
+    $created_by = $_SESSION['user']['name'];
 
+$sql = "UPDATE  `questions` SET  `text` = '$text', `answer` ='$answer', `created_by` = '$created_by',
+         `a` ='$a', `b` = '$b',`c` = '$c',`d`='$d', `level` = '$level'"; 
 
-// $sql = "INSERT INTO `answers` ( `text`, `type`, `options`,  `created_at`, `updated_at`,`created_by`)
-//  VALUES ( '$type', '$type', '$options',  current_timestamp(), NULL,'$created_by');";
+ mysqli_query($conn,$sql) or header("Location: edit_test.php?id=$id&msg=".mysqli_error($conn));
 
-//  mysqli_query($conn,$sql) or header('Location: create_answer.php?msg='.mysqli_error($conn));
-//          echo "<script> location.href='create_answer.php?msg=Done'; </script>";
-//         exit;
-// }
+         echo "<script> location.href='edit_test.php?msg=Done&type=$type&id=$id'; </script>";
+        exit;
+}
 
 
 

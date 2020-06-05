@@ -22,10 +22,12 @@
 
  <div class="card" style="width: 21rem;">
   <div class="card-body">
-    <h5 class="card-title"> Create Multiple Choice Question</h5>
+    <h5 class="card-title"> Edit One word Question</h5>
 
 <form class='' action='api.php' method='post'>
-    <input type="hidden" class="form-control" name="create-one-word-question" aria-describedby="textHelp" />
+<input type="hidden" class="form-control" name="edit-question" aria-describedby="textHelp" />
+<input type="hidden" class="form-control" value="<? echo $id?>" name="id" aria-describedby="textHelp" />
+
 
     <?php
       if(isset($_GET['msg'])):
@@ -42,27 +44,26 @@
 
     <?php endif ?>
 
-    <input type="hidden" class="form-control" name="createQuestion" value='createQuestion' />
-    <input type="hidden" class="form-control" name="type" value='one-word' />
       <div class="form-group ">
     <label for="name">Question</label>
-    <input type="text" class="form-control" name="text" aria-describedby="textHelp" />
+    <input type="text" value="<? echo $text?>" class="form-control" name="text" aria-describedby="textHelp" />
   </div>
 
      <div class="form-group ">
     <label for="gender">Answer</label>
-    <input type="text" class="form-control" name="answer" aria-describedby="textHelp" />
+    <input type="text" class="form-control" value="<? echo $answer?>"  name="answer" aria-describedby="textHelp" />
   </div>
 
 
-     <div class="form-group ">
+       <div class="form-group ">
     <label for="grade">Level</label>
-        <select  class="form-control" name="level" aria-describedby="genderHelp" >
-  <option value='junior'> Junior </option>
-  <option value='senior'> Senior </option>
+        <select  class="form-control"  selected="<? echo $level ?>" name="level" aria-describedby="genderHelp" >
+
+
+  <option <?  if($level == 'junior') echo 'selected'  ?>   value='junior'> Junior </option>
+  <option <?  if($level == 'senior') echo 'selected'  ?>  value='senior'> Senior </option>
     </select>
   </div>
-
 
      <div class="form-group ">
   <button type="submit" class="btn btn-primary">Submit</button>
