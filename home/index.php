@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__.'/../layout/admin/header.php');
+require_once(__DIR__.'/../layout/admin/headerNotLoggedIn.php');
 
 
 

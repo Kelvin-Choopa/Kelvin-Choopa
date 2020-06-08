@@ -6,8 +6,8 @@ $type  = 'pdf';
 $files = getPastPapers();
 
 ?>
-
-<div class="card col-md-12">
+<!-- // text-white bg-info mb-3 -->
+<div class="card col-md-12 text-white bg-info mb-3">
   <h5 class="card-header">Past Papers</h5>
   <div class="card-body">
     <h5 class="card-title">It takes one shot to exel</h5>
@@ -15,6 +15,7 @@ $files = getPastPapers();
     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
   </div>
 </div>
+
 
 
 <?php  if(count($files)):
@@ -39,7 +40,7 @@ $files = getPastPapers();
         
     ?>
 
-<div class="card" style="width: 30rem;">
+<div class="card " style="width: 30rem;">
   <div class="card-body">
     <h5 class="card-title"><?php echo $title?></h5>
    
@@ -76,7 +77,6 @@ $files = getPastPapers();
 
 
         <?php $index++; endwhile;   else:  ?>
-
 
 <?php  endif  ?>
 

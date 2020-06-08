@@ -58,11 +58,11 @@ style="width: 1367px;"
 
           
          <li class="nav-item">
-        <a class="nav-link" href=" /comp_test/auth/api.php?logout=true">Logout</a>
+        <a class="nav-link" href="/comp_test/auth/api.php?logout=true">Logout</a>
       </li>
 
            <li class="nav-item active">
-        <a class="nav-link pull-right" href="#"> 
+        <a class="nav-link pull-right" href="/comp_test/auth/profile.php"> 
         <?php
         
           if (isset($_SESSION['user']['name'])) {

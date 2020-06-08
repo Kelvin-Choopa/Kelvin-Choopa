@@ -5,11 +5,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-if(!isset($_SESSION['user']['name'])){
-           echo "<script> location.href='/comp_test/auth/login.php'; </script>";
-      die('You are not authorised to view this page');
-
-      //don't allow users who are not logged in
+if(isset($_SESSION['user']['name'])){
+          echo "<script> location.href='/comp_test/lessons/past_papers/'; </script>";
+     die('You are not authorised to view this page');
 }
       
       $path = "/comp_test/assets/css/";

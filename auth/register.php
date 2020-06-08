@@ -1,6 +1,6 @@
 
 <?php
-require_once('../layout/admin/header.php');
+require_once('../layout/admin/headerNotLoggedIn.php');
 ?>
 
 <div class="card col-md-12">
@@ -10,6 +10,7 @@ require_once('../layout/admin/header.php');
     <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ullam dolor fuga rerum qui voluptate ipsa nisi dolorum quisquam! Placeat odit perspiciatis quae maiores eligendi obcaecati tenetur! At, magnam dicta.</p>
     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
   </div>
+</div>
 </div>
 
   <div class="row">

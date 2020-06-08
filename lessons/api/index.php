@@ -42,16 +42,18 @@ function getPastPapers(){
        $grade = isset($_SESSION['user']['grade']) ? $_SESSION['user']['grade']: 'junior' ;
        $level = $grade > 9 ? 'senior' : 'junior';
 
-            if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'){
-       $sql = "SELECT * FROM past_papers ";
-
-            }elseif (isset($_GET['month']) && isset($_GET['year'])) {
+            if (isset($_GET['month']) && isset($_GET['year'])) {
            $month = $_GET['month'];
            $year = $_GET['year'];
 
        $sql = "SELECT * FROM past_papers WHERE `month` = '$month' AND `year` = '$year' AND `level` = '$level' ";
 
-           }else{
+           }
+            elseif(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'){
+       $sql = "SELECT * FROM past_papers ";
+
+            }
+            else{
        $sql = "SELECT * FROM past_papers WHERE `level` = '$level' ";
 
            }
@@ -76,15 +78,19 @@ function getMarkSchema(){
        $grade = isset($_SESSION['user']['grade']) ? $_SESSION['user']['grade']: 'junior' ;
        $level = $grade > 9 ? 'senior' : 'junior';
 
-               if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'){
 
-       $sql = "SELECT * FROM mark_schema ";
-
-               }else if (isset($_GET['month']) && isset($_GET['year'])) {
+               if (isset($_GET['month']) && isset($_GET['year'])) {
            $month = $_GET['month'];
            $year = $_GET['year'];
-
        $sql = "SELECT * FROM mark_schema WHERE `month` = '$month' AND `year` = '$year' AND `level` = '$level' ";
+
+               }
+
+               else if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'){
+
+       $sql = "SELECT * FROM mark_schema ";
+               
+
 
        }else{
        $sql = "SELECT * FROM mark_schema WHERE `level` = '$level' ";
@@ -110,18 +116,19 @@ function getQuestions(){
           $grade = isset($_SESSION['user']['grade']) ? $_SESSION['user']['grade']: 'junior' ;
        $level = $grade > 9 ? 'senior' : 'junior';
 
-               if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'){
-       $sql = "SELECT * FROM questions ";
-
-
-
-               }else if (isset($_GET['month']) && isset($_GET['year'])) {
+           if (isset($_GET['month']) && isset($_GET['year'])) {
            $month = $_GET['month'];
            $year = $_GET['year'];
 
        $sql = "SELECT * FROM questions WHERE `month` = '$month' AND `year` = '$year' AND `level` = '$level' ";
 
-       }else{
+       }
+            elseif(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'){
+       $sql = "SELECT * FROM questions ";
+
+               }
+       
+       else{
        $sql = "SELECT * FROM questions WHERE `level` = '$level' ";
        }
 

@@ -5,8 +5,6 @@ require_once(__DIR__.'../../db/connection.php');
 
     $conn = DBCoonect();
 
-
-
 if (isset($_POST['regiser'])) {
 
 
@@ -19,7 +17,12 @@ if (isset($_POST['regiser'])) {
 }elseif (isset($_GET['logout'])) {
     logout();
     # code...
+}elseif (isset($_POST['edit-profile'])) {
+    # code...
+    editProfile($conn);
+
 }
+
 
 
 
@@ -40,7 +43,6 @@ $sql = "SELECT * FROM users WHERE `email` = '$email' AND  `password`='$password'
        if($results->num_rows !== 1){
             $err = 'Sorry wrong password or email';
 
-        //  echo '<script> location.href="regiser.php?err="'.$err."'; </script>";
              header('Location: login.php?err='.$err);
 
             exit;
@@ -75,7 +77,6 @@ function register($conn) {
 
 
 
-
 $sql = "INSERT INTO `users` (`id`, `name`, `email`, `dob`, `school`, `grade`, `password`, `gender`)
  VALUES (NULL, '$name', '$email', '$dob', '$school',  '$grade', MD5('$password'), '$gender')";
 
@@ -86,7 +87,29 @@ $sql = "INSERT INTO `users` (`id`, `name`, `email`, `dob`, `school`, `grade`, `p
 }
 
 
+function editProfile($conn) {
 
+    session_start();
+
+    $name = $_POST['name'];
+    $dob = $_POST['dob'];
+    $school = $_POST['school'];
+    $grade = $_POST['grade'];
+    $password = $_POST['password'];
+   $id =  $_SESSION['user']['id'];
+
+    $gender = $_POST['gender'];
+
+
+$sql = "UPDATE  `users` SET  `name` ='$name', `dob`= '$dob', `school` = '$school', `grade` = '$grade', 
+`password` = MD5('$password'), `gender` = '$gender' WHERE `id`= '$id' ";
+
+
+ mysqli_query($conn,$sql) or header('Location: edit_profile.php?err='.mysqli_error($conn));
+         echo "<script> location.href='profile.php'; </script>";
+        exit;
+
+}
 
 function logout(){
         session_start();

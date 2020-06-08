@@ -7,7 +7,7 @@ $files = getFiles($type);
 
 ?>
 
-<div class="card col-md-12">
+<div class="card col-md-12 text-white bg-info mb-3">
   <h5 class="card-header"> Video Resources </h5>
   <div class="card-body">
     <h5 class="card-title">View tutorials that matter</h5>

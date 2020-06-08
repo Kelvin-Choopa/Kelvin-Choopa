@@ -7,7 +7,7 @@ $files = getQuestions($type);
 
 ?>
 
-<div class="card ">
+<div class="card text-white bg-info mb-3">
   <h5 class="card-header"> IQ Test </h5>
   <div class="card-body">
     <h5 class="card-title">Check your worthy</h5>

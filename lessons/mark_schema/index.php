@@ -7,7 +7,7 @@ $files = getMarkSchema();
 
 ?>
 
-<div class="card col-md-12">
+<div class="card col-md-12 text-white bg-info mb-3">
   <h5 class="card-header">Mark Schemas</h5>
   <div class="card-body">
     <h5 class="card-title">It takes one shot to exel</h5>
@@ -34,8 +34,8 @@ $files = getMarkSchema();
            $year = $row['year'];
             $editPath = '/comp_test/utils/upload/edit_mark_schema.php?id='.$id;
 
-
-           $pastPaperLink = "/comp_test/lessons/mark_schema?month=$month&year=$year";
+// lessons/past_papers/
+           $pastPaperLink = "/comp_test/lessons/past_papers?month=$month&year=$year";
         
     ?>
 
@@ -48,6 +48,8 @@ $files = getMarkSchema();
     </p>
     <embed src="<?php echo $path;  ?>" width="400" height="200" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">
 
+
+    <a href="<?php echo $pastPaperLink?>" class="card-link">View Past Paper </a>
  
     <a href="<?php echo $path;  ?>" target='_blank' class="card-link">View </a>
     <a href="<?php echo $path;  ?>" target='_blank' class="card-link" download>Download </a>
