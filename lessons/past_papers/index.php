@@ -5,13 +5,21 @@ require_once('../api/index.php');
 $type  = 'pdf';
 $files = getPastPapers();
 
+
+$months = ['N/A','Jan','Feb','March',"April","May","June","July","Aug","Sep","Oct","Nov","Dec"];
+
+
+
 ?>
+
+
+   
 <!-- // text-white bg-info mb-3 -->
 <div class="card col-md-12 text-white bg-info mb-3">
   <h5 class="card-header">Past Papers</h5>
   <div class="card-body">
     <h5 class="card-title">It takes one shot to exel</h5>
-    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ullam dolor fuga rerum qui voluptate ipsa nisi dolorum quisquam! Placeat odit perspiciatis quae maiores eligendi obcaecati tenetur! At, magnam dicta.</p>
+    <p class="card-text">Check out what has been written in the past to prepare for the future.</p>
     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
   </div>
 </div>
@@ -34,7 +42,8 @@ $files = getPastPapers();
 
            $month = $row['month'];
            $year = $row['year'];
-            $editPath = '/comp_test/utils/upload/edit_past_paper.php?id='.$id;
+          $editPath = '/comp_test/utils/upload/edit_past_paper.php?id='.$id;
+          $deletePath = '../api/index.php?delete=true&table=past_papers&id='.$id;
 
            $markSchemaLink = "/comp_test/lessons/mark_schema?month=$month&year=$year";
         
@@ -43,7 +52,8 @@ $files = getPastPapers();
 <div class="card " style="width: 30rem;">
   <div class="card-body">
     <h5 class="card-title"><?php echo $title?></h5>
-   
+      <code> Year : <?php echo  $year; ?> </code>
+   <code> Month : <?php echo $months[$month] ?> </code>
     <p class="card-text">
     <?php echo $description?>
     </p>
@@ -55,13 +65,14 @@ $files = getPastPapers();
 
  
     <a href="<?php echo $path;  ?>" target='_blank' class="card-link">View </a>
-    <a href="<?php echo $path;  ?>" target='_blank' class="card-link" download>Download </a>
+    <a onclick="setDownloadCounter(event,<?php echo $id ?>)"  href="<?php echo $path;  ?>" target='_blank' class="card-link download" download>Download </a>
 
            <?php
                         if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'):
             
             ?>
     <a href="<?php echo $editPath;  ?>"  class="card-link" >Edit </a>
+    <a href="<?php echo $deletePath;  ?>"  class="text-danger card-link delete" >Delete </a>
 
            <?php
       endif;
@@ -76,9 +87,29 @@ $files = getPastPapers();
 
 
 
+
         <?php $index++; endwhile;   else:  ?>
 
 <?php  endif  ?>
+
+     <script>
+
+  function setDownloadCounter(e,id){
+
+   $.post("../api/index.php",
+  {
+   id,
+   setDownload:true,
+   table:'past_papers'
+  },
+  function(data, status){
+    location.reload()
+  });
+
+  }
+
+</script>
+
 
 
 
@@ -87,6 +118,8 @@ require_once('../../layout/admin/footer.php')
 
 ?>
 
+
+  
 
 
 

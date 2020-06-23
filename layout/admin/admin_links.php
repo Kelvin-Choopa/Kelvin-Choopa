@@ -1,3 +1,18 @@
+        
+     <?php
+     
+     require_once(__DIR__.'../../../db/connection.php');
+
+    $conn = DBCoonect();
+
+     $sql = "SELECT * FROM test_results  ";
+
+        $results = mysqli_query($conn,$sql);  
+        $total  = mysqli_num_rows($results);
+     
+     ?>
+
+
   <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          Manage Resources
@@ -22,3 +37,13 @@
  
         </div>
       </li>
+
+          <li class="nav-item">
+          <a class=" btn btn-info text-" href="/comp_test/lessons/test/all_results.php">
+
+
+<!-- <button type="button" class="btn btn-info btn-small"  style='color:white'> -->
+   <span class="badge badge-light"> Results: <?php echo   $total  ?></span>
+<!-- </button> -->
+</a>
+          </li>

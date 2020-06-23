@@ -14,32 +14,32 @@
 
 
 <div class="card col-md-12">
-  <h5 class="card-header"> Welcome to KC e-Learning Platform </h5>
+  <h5 class="card-header"> Welcome  </h5>
   <div class="card-body">
-    <h5 class="card-title">The world is going digital so should you! - Don't get left behind like 
-      <code> Motorola v360 </code>
+    <h5 class="card-title">
+      <code>  </code>
     </h5>
-    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ullam dolor fuga rerum qui voluptate ipsa nisi dolorum quisquam! Placeat odit perspiciatis quae maiores eligendi obcaecati tenetur! At, magnam dicta.</p>
+    <p class="card-text"></p>
     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
   </div>
 </div>
 
     <div class="carousel-item active">
-      <img src="assets/images/img1.jpg" class="d-block w-100 c-img" alt="...">
+      <img src="assets/images/c6.jpg" class="d-block w-100 c-img" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>First slide label</h5>
         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="assets/images/img1.jpg" class="d-block w-100 c-img" alt="...">
+      <img src="assets/images/c5.jpg" class="d-block w-100 c-img" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Second slide label</h5>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="assets/images/img1.jpg" class="d-block w-100 c-img" alt="...">
+      <img src="assets/images/c.jpg" class="d-block w-100 c-img" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>

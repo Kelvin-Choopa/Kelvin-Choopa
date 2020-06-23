@@ -72,13 +72,16 @@ function register($conn) {
     $school = $_POST['school'];
     $grade = $_POST['grade'];
     $password = $_POST['password'];
-    $level = $_POST['level'];
+    // $level = $_POST['level'];
     $gender = $_POST['gender'];
+    $country = $_POST['country'];
+    $district = $_POST['district'];
+    $province = $_POST['province'];
 
 
 
-$sql = "INSERT INTO `users` (`id`, `name`, `email`, `dob`, `school`, `grade`, `password`, `gender`)
- VALUES (NULL, '$name', '$email', '$dob', '$school',  '$grade', MD5('$password'), '$gender')";
+$sql = "INSERT INTO `users` (`id`,`country`,`district`,`province`, `name`, `email`, `dob`, `school`, `grade`, `password`, `gender`)
+ VALUES (NULL, '$country','$district','$province','$name', '$email', '$dob', '$school',  '$grade', MD5('$password'), '$gender')";
 
  mysqli_query($conn,$sql) or header('Location: register.php?err='.mysqli_error($conn));
          echo "<script> location.href='login.php'; </script>";
@@ -96,12 +99,14 @@ function editProfile($conn) {
     $school = $_POST['school'];
     $grade = $_POST['grade'];
     $password = $_POST['password'];
-   $id =  $_SESSION['user']['id'];
+    $id =  $_SESSION['user']['id'];
 
     $gender = $_POST['gender'];
+    $country = $_POST['country'];
+    $district = $_POST['district'];
+    $province = $_POST['province'];
 
-
-$sql = "UPDATE  `users` SET  `name` ='$name', `dob`= '$dob', `school` = '$school', `grade` = '$grade', 
+$sql = "UPDATE  `users` SET  `name` ='$name',`country` ='$country',`district` ='$district',`province` ='$province', `dob`= '$dob', `school` = '$school', `grade` = '$grade', 
 `password` = MD5('$password'), `gender` = '$gender' WHERE `id`= '$id' ";
 
 

@@ -12,8 +12,8 @@ require_once('../../layout/admin/header.php');
     
     <span class="badge badge-pill badge-primary">Video</span>
 <span class="badge badge-pill badge-secondary">Illustratiions</span>
-<span class="badge badge-pill badge-success">Pdf (Past papers)</span>
-<span class="badge badge-pill badge-dark">Gif</span>
+<span class="badge badge-pill badge-success">Pdf </span>
+
     
     </h6>
 
@@ -38,17 +38,17 @@ require_once('../../layout/admin/header.php');
 
         <div class="form-group ">
     <label for="title">Title</label>
-    <input type="title" class="form-control" name="title" aria-describedby="nameHelp" />
+    <input required type="title" class="form-control" name="title" aria-describedby="nameHelp" />
   </div>
 
         <div class="form-group ">
     <label for="description">Description</label>
-    <input type="description" class="form-control" name="description" aria-describedby="nameHelp" />
+    <input required type="description" class="form-control" name="description" aria-describedby="nameHelp" />
   </div>
 
      <div class="form-group ">
     <label for="grade">Level</label>
-        <select  class="form-control" name="level" aria-describedby="genderHelp" >
+        <select required class="form-control" name="level" aria-describedby="genderHelp" >
   <option value='junior'> Junior </option>
   <option value='senior'> Senior </option>
     </select>
@@ -56,7 +56,7 @@ require_once('../../layout/admin/header.php');
 
 <div class="form-group">
   <label for="exampleFormControlFile1">Click to upload</label>
-  <input type="file" name='file' class="form-control-file" id="exampleFormControlFile1">
+  <input required type="file" name='file' class="form-control-file" id="exampleFormControlFile1">
 </div>
 
 <button>  Upload </button>

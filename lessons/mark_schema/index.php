@@ -5,13 +5,16 @@ require_once('../api/index.php');
 $type  = 'pdf';
 $files = getMarkSchema();
 
+$months = ['N/A','Jan','Feb','March',"April","May","June","July","Aug","Sep","Oct","Nov","Dec"];
+
+
 ?>
 
 <div class="card col-md-12 text-white bg-info mb-3">
   <h5 class="card-header">Mark Schemas</h5>
   <div class="card-body">
     <h5 class="card-title">It takes one shot to exel</h5>
-    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ullam dolor fuga rerum qui voluptate ipsa nisi dolorum quisquam! Placeat odit perspiciatis quae maiores eligendi obcaecati tenetur! At, magnam dicta.</p>
+    <p class="card-text">Check out how to answer exam question from the marking Key.</p>
     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
   </div>
 </div>
@@ -33,6 +36,8 @@ $files = getMarkSchema();
            $month = $row['month'];
            $year = $row['year'];
             $editPath = '/comp_test/utils/upload/edit_mark_schema.php?id='.$id;
+          $deletePath = '../api/index.php?delete=true&table=mark_schema&id='.$id;
+
 
 // lessons/past_papers/
            $pastPaperLink = "/comp_test/lessons/past_papers?month=$month&year=$year";
@@ -42,6 +47,9 @@ $files = getMarkSchema();
 <div class="card" style="width: 30rem;">
   <div class="card-body">
     <h5 class="card-title"><?php echo $title?></h5>
+
+          <code> Year : <?php echo  $year; ?> </code>
+   <code> Month : <?php echo $months[$month] ?> </code>
    
     <p class="card-text">
     <?php echo $description?>
@@ -52,12 +60,15 @@ $files = getMarkSchema();
     <a href="<?php echo $pastPaperLink?>" class="card-link">View Past Paper </a>
  
     <a href="<?php echo $path;  ?>" target='_blank' class="card-link">View </a>
-    <a href="<?php echo $path;  ?>" target='_blank' class="card-link" download>Download </a>
+    <a onclick="setDownloadCounter(event,<?php echo $id ?>)"  href="<?php echo $path;  ?>" target='_blank' class="card-link download" download>Download </a>
+
             <?php
                         if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'):
             
             ?>
     <a href="<?php echo $editPath;  ?>"  class="card-link" >Edit </a>
+    <a href="<?php echo $deletePath;  ?>"  class="text-danger card-link delete" >Delete </a>
+
 
            <?php
       endif;
@@ -76,6 +87,24 @@ $files = getMarkSchema();
 
 
 <?php  endif  ?>
+
+     <script>
+
+  function setDownloadCounter(e,id){
+
+   $.post("../api/index.php",
+  {
+   id,
+   setDownload:true,
+   table:'mark_schema'
+  },
+  function(data, status){
+    location.reload()
+  });
+
+  }
+
+</script>
 
 
 

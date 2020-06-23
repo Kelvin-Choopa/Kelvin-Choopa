@@ -17,6 +17,14 @@ if(isset($_POST["test-questions"])) {
     return markTest();
 
 }   
+else if(isset($_GET["delete"])) {
+
+deleteResource();
+
+}else if (isset($_POST['setDownload'])){
+    setDownloadCounter();
+}
+ 
 
 
 function getFiles($type){
@@ -89,8 +97,6 @@ function getMarkSchema(){
                else if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'){
 
        $sql = "SELECT * FROM mark_schema ";
-               
-
 
        }else{
        $sql = "SELECT * FROM mark_schema WHERE `level` = '$level' ";
@@ -110,7 +116,7 @@ function getMarkSchema(){
     return $rows;
 }
 
-function getQuestions(){
+function getQuestions($isRandomise = false){
     $conn = DBCoonect();
 
           $grade = isset($_SESSION['user']['grade']) ? $_SESSION['user']['grade']: 'junior' ;
@@ -132,9 +138,10 @@ function getQuestions(){
        $sql = "SELECT * FROM questions WHERE `level` = '$level' ";
        }
 
+           if($isRandomise){
 
-    
-  
+           $sql .=' ORDER BY RAND() LIMIT 100';
+       }
     
     $results = mysqli_query($conn,$sql);
     
@@ -163,23 +170,98 @@ function markTest(){
     $index = 0;
 
 
+     
+
         while ($index < $total) {
 
-                $row = $questions[$index];
-                 $id = $row['id'];    
+                 $row = $questions[$index];
+                 $id = $row['id'];
+            
                  $rightAns = strtolower($row['answer']);
-            $studentAns= strtolower($_POST["$id-question"]) ;
 
+
+                 if(isset($_POST["$id-question"]) && strlen($_POST["$id-question"])){
+                   
+                     //check if question was picked among random list
+                 $studentAns= strtolower($_POST["$id-question"]) ;
             if($rightAns === $studentAns){
                 $corrrectAns++;
             }else{
                 $wrongAns++;
             }
+        }
              $index++;
 
         }
 
-        $score = $corrrectAns > 0 ?  ($corrrectAns/$total)*100 : 0;
+ 
+            $total =  $wrongAns+$rightAns;
+                $score = $corrrectAns > 0 ?  ($corrrectAns/$total)*100 : 0;
+        saveScore($corrrectAns,$wrongAns,($corrrectAns+$wrongAns),$score);
+
+}
+
+
+function saveScore($corrrectAns,$wrongAns,$total,$score) {
+    $conn = DBCoonect();
+$comment = $corrrectAns >= $wrongAns ? 'pass' : 'fail'; 
+$studentId = $_SESSION['user']['id'];
+
+$sql = "INSERT INTO `test_results` (`id`, `right`, `wrong`, `total`, `score`,`comment`,`student_id` )
+ VALUES (NULL, '$corrrectAns', '$wrongAns', '$total', '$score','$comment','$studentId')";
+
+ mysqli_query($conn,$sql) or die(mysqli_error($conn));
+
              header("Location: ../test/results.php?r=$corrrectAns&w=$wrongAns&t=$total&s=$score");
+             
+
+}
+
+function deleteResource(){
+    $conn = DBCoonect();
+
+
+     $table = $_GET['table'];
+     $id = $_GET['id'];
+
+    
+       $sql = "DELETE  FROM $table WHERE `id` = '$id' ";
+       $results = mysqli_query($conn,$sql);
+
+       echo "<script> window.history.back(); </script>";
+
+}
+
+function getResults(){
+    $conn = DBCoonect();
+
+       $sql = "SELECT * FROM test_results INNER JOIN `users` ON `users`.`id` = `test_results`.`student_id` ";
+
+    
+    $results = mysqli_query($conn,$sql);
+    
+    $rows = [];
+    
+    while ($row = mysqli_fetch_assoc($results)) {
+        array_unshift($rows,$row);
+    }
+    return $rows;
+}
+
+
+function setDownloadCounter(){
+    $conn = DBCoonect();
+
+  $table = $_POST['table'];
+       $id = $_POST['id'];
+
+       
+       //return latest download
+        $sql = "SELECT `downloads` FROM $table WHERE id = '$id' ";
+       $downloads =   mysqli_fetch_assoc(mysqli_query($conn,$sql));
+       $downloads = $downloads['downloads'];
+       $downloads = $downloads+1;
+        mysqli_query($conn,"UPDATE $table SET `downloads` = $downloads WHERE `id` = '$id'");
+        echo $downloads;
 
 }

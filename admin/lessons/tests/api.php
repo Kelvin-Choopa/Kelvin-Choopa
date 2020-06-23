@@ -39,10 +39,10 @@ function  createQuestion($conn) {
     $text = $_POST['text'];
     $level = $_POST['level'];
 
-    $a = $__POST['a'];
-    $b = $__POST['b'];
-    $c = $__POST['c'];
-    $d = $__POST['d'];
+    $a = $_POST['a'];
+    $b = $_POST['b'];
+    $c = $_POST['c'];
+    $d = $_POST['d'];
     $answer = $_POST['answer'];
     $created_by = $_SESSION['user']['name'];
 

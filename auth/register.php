@@ -78,7 +78,7 @@ require_once('../layout/admin/headerNotLoggedIn.php');
 
 
       <div class="form-group ">
-    <label for="gender">gender</label>
+    <label for="gender">Gender</label>
     <select  class="form-control" name="gender" aria-describedby="genderHelp" >
 
   <option> Male </option>
@@ -86,6 +86,23 @@ require_once('../layout/admin/headerNotLoggedIn.php');
 
     </select>
   </div>
+
+     <div class="form-group ">
+    <label for="country">Country</label>
+    <input type="text" class="form-control" maxlength='100' name="country" aria-describedby="dobHelp" />
+  </div>
+
+     <div class="form-group ">
+    <label for="district">District</label>
+    <input type="text" class="form-control" maxlength='100' name="district" aria-describedby="dobHelp" />
+  </div>
+
+
+     <div class="form-group ">
+    <label for="province">Province</label>
+    <input type="text" class="form-control" maxlength='100' name="province" aria-describedby="dobHelp" />
+  </div>
+
 
 
       <div class="form-group ">

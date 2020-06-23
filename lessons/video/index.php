@@ -11,7 +11,7 @@ $files = getFiles($type);
   <h5 class="card-header"> Video Resources </h5>
   <div class="card-body">
     <h5 class="card-title">View tutorials that matter</h5>
-    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ullam dolor fuga rerum qui voluptate ipsa nisi dolorum quisquam! Placeat odit perspiciatis quae maiores eligendi obcaecati tenetur! At, magnam dicta.</p>
+    <p class="card-text">Check out video tutorials here!.</p>
     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
   </div>
 </div>
@@ -22,18 +22,33 @@ $files = getFiles($type);
         while($index < count($files) ):
             $row = $files[$index] ;
             $title = $row['title'];
+            $id = $row['id'];
             $downloads = $row['downloads'];
             $description = $row['description'];
             $file = ($row['link']) ;
              $fileStorage =  getFileStoragePath();
 
             $path = ($fileStorage.$file) ;
+           $deletePath = '../api/index.php?delete=true&table=resources&id='.$id;
+
         
     ?>
 
 <div class="card" style="width: 30rem;">
   <div class="card-body">
     <h5 class="card-title"><?php echo $title?></h5>
+
+              <?php
+                        if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'):
+            
+            ?>
+    <a href="<?php echo $deletePath;  ?>"  class="text-danger card-link delete" >Delete </a>
+
+    
+
+           <?php
+      endif;
+?>
    
     <p class="card-text">
     <?php echo $description?>
@@ -48,7 +63,8 @@ Your browser does not support the video tag.
 
  
     <a href="<?php echo $path;  ?>" target='_blank' class="card-link">View </a>
-    <a href="<?php echo $path;  ?>" target='_blank' class="card-link" download>Download </a>
+    <a onclick="setDownloadCounter(event,<?php echo $id ?>)"  href="<?php echo $path;  ?>" target='_blank' class="card-link download" download>Download </a>
+    
 
     <hr />
         <h6 class="card-subtitle mb-2 text-muted">
@@ -58,6 +74,24 @@ Your browser does not support the video tag.
         <?php $index++; endwhile;   else:  ?>
 
 <?php  endif  ?>
+
+     <script>
+
+  function setDownloadCounter(e,id){
+
+   $.post("../api/index.php",
+  {
+   id,
+   setDownload:true,
+   table:'resources'
+  },
+  function(data, status){
+    location.reload()
+  });
+
+  }
+
+</script>
 
 <?php
 require_once('../../layout/admin/footer.php')

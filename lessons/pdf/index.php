@@ -5,13 +5,15 @@ require_once('../api/index.php');
 $type  = 'pdf';
 $files = getFiles($type);
 
+
+
 ?>
 
 <div class="card col-md-12 text-white bg-info mb-3">
   <h5 class="card-header">Soft copy Materials (PDF)</h5>
   <div class="card-body">
     <h5 class="card-title">It takes one shot to exel</h5>
-    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ullam dolor fuga rerum qui voluptate ipsa nisi dolorum quisquam! Placeat odit perspiciatis quae maiores eligendi obcaecati tenetur! At, magnam dicta.</p>
+    <p class="card-text">Make use of the material, be wise.</p>
     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
   </div>
 </div>
@@ -20,26 +22,45 @@ $files = getFiles($type);
         while($index < count($files) ):
             $row = $files[$index] ;
             $title = $row['title'];
+            $id = $row['id'];
             $downloads = $row['downloads'];
             $description = $row['description'];
             $file = ($row['link']) ;
+     
              $fileStorage =  getFileStoragePath();
 
             $path = ($fileStorage.$file) ;
+           $deletePath = '../api/index.php?delete=true&table=resources&id='.$id;
+
+            
         
     ?>
 
 <div class="card" style="width: 30rem;">
   <div class="card-body">
     <h5 class="card-title"><?php echo $title?></h5>
-   
+
+              <?php
+                        if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'):
+            
+            ?>
+    <a href="<?php echo $deletePath;  ?>"  class="text-danger card-link delete" >Delete </a>
+
+    
+
+           <?php
+      endif;
+?>
+    
+
     <p class="card-text">
     <?php echo $description?>
     </p>
     <embed src="<?php echo $path;  ?>" width="400" height="200" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">
  
     <a href="<?php echo $path;  ?>" target='_blank' class="card-link">View </a>
-    <a href="<?php echo $path;  ?>" target='_blank' class="card-link" download>Download </a>
+    <a onclick="setDownloadCounter(event,<?php echo $id ?>)"  href="<?php echo $path;  ?>" target='_blank' class="card-link download" download>Download </a>
+
 
  
 
@@ -55,6 +76,23 @@ $files = getFiles($type);
 
 
 <?php  endif  ?>
+     <script>
+
+  function setDownloadCounter(e,id){
+
+   $.post("../api/index.php",
+  {
+   id,
+   setDownload:true,
+   table:'resources'
+  },
+  function(data, status){
+    location.reload()
+  });
+
+  }
+
+</script>
 
 
 
