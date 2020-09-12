@@ -1,7 +1,5 @@
 
-<?php
-require_once('../layout/admin/headerNotLoggedIn.php');
-?>
+<?php require_once '../layout/admin/headerNotLoggedIn.php'; ?>
 
 <div class="card col-md-12">
   <h5 class="card-header"> Register </h5>
@@ -19,20 +17,15 @@ require_once('../layout/admin/headerNotLoggedIn.php');
 
 <form class='' action='api.php' method='post'>
 
-    <?php
-      if(isset($_GET['err'])):
-
-    ?>
+    <?php if (isset($_GET['err'])): ?>
 
       <blockquote class='text-danger'>
-         <?php
-     echo $_GET['err'];
-    ?>
+         <?php echo $_GET['err']; ?>
 
       </blockquote>
 
 
-    <?php endif ?>
+    <?php endif; ?>
 
     <input type="hidden" class="form-control" name="regiser" value='regiser' />
 
@@ -58,15 +51,7 @@ require_once('../layout/admin/headerNotLoggedIn.php');
 
       <div class="form-group ">
     <label for="grade">grade</label>
-        <select  class="form-control" name="grade" aria-describedby="genderHelp" >
-
-  <option> 8 </option>
-  <option> 9 </option>
-  <option> 10 </option>
-  <option> 11 </option>
-  <option> 12 </option>
-
-    </select>
+    <input type='number' name='grade' />
   </div>
 
 
@@ -126,6 +111,5 @@ require_once('../layout/admin/headerNotLoggedIn.php');
 </div>
 </div>
 
-<?php
-require_once('../layout/admin/footer.php')
+<?php require_once '../layout/admin/footer.php';
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2020 at 01:42 PM
+-- Generation Time: Jun 24, 2020 at 11:02 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -62,7 +62,7 @@ CREATE TABLE `mark_schema` (
   `description` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` varchar(1000) NOT NULL,
-  `downloads` bigint(20) DEFAULT NULL,
+  `downloads` bigint(20) DEFAULT 0,
   `title` varchar(100) NOT NULL,
   `link` varchar(1000) DEFAULT NULL,
   `month` int(11) DEFAULT NULL,
@@ -75,8 +75,7 @@ CREATE TABLE `mark_schema` (
 
 INSERT INTO `mark_schema` (`id`, `year`, `description`, `created_at`, `created_by`, `downloads`, `title`, `link`, `month`, `level`) VALUES
 (1, 2016, 'Zapf to social green', '2020-05-19 02:27:01', '', NULL, 'Mouse', '387543.pdf', 0, 'junior'),
-(2, 2017, 'Zapf to social green', '2020-05-19 02:27:01', '', NULL, 'Mouse', '387543.pdf', 0, 'junior'),
-(3, 2020, 'focus focus focus focus', '2020-05-29 10:52:47', '', NULL, 'focus ', '805039.pdf', 2, 'junior');
+(2, 2017, 'Zapf to social green', '2020-05-19 02:27:01', 'Brian Mukuka', 1, 'Mouse', '387543.pdf', 0, 'senior');
 
 -- --------------------------------------------------------
 
@@ -93,7 +92,7 @@ CREATE TABLE `past_papers` (
   `updated_at` date DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `mark_schema_id` int(11) DEFAULT NULL,
-  `downloads` bigint(20) DEFAULT NULL,
+  `downloads` bigint(20) DEFAULT 0,
   `month` int(11) DEFAULT NULL,
   `description` text NOT NULL,
   `link` varchar(1000) NOT NULL,
@@ -105,14 +104,14 @@ CREATE TABLE `past_papers` (
 --
 
 INSERT INTO `past_papers` (`id`, `title`, `year`, `subject`, `created_by`, `updated_at`, `created_at`, `mark_schema_id`, `downloads`, `month`, `description`, `link`, `level`) VALUES
-(1, 'Mouse', 2016, NULL, '', NULL, '2020-05-19 02:12:11', NULL, NULL, 2, 'Zapf to social green', '817305.pdf', 'junior'),
+(1, 'Mouse', 2016, NULL, '', NULL, '2020-05-19 02:12:11', NULL, 1, 2, 'Zapf to social green', '817305.pdf', 'junior'),
 (2, 'asdf', 2016, NULL, '', NULL, '2020-05-19 02:17:18', NULL, NULL, 1, 'Zapf to social green', '866237.pdf', 'junior'),
-(3, 'Mouse', 2016, NULL, '', NULL, '2020-05-19 02:20:56', NULL, NULL, 0, 'Zapf to social green', '786737.pdf', 'junior'),
+(3, 'Mouse', 2016, NULL, '', NULL, '2020-05-19 02:20:56', NULL, 9, 0, 'Zapf to social green', '786737.pdf', 'junior'),
 (4, 'Mouse', 2016, NULL, '', NULL, '2020-05-19 02:25:56', NULL, NULL, 0, 'Zapf to social green', '514956.pdf', 'junior'),
 (5, 'Mouse', 2016, NULL, 'Brian Mukuka', NULL, '2020-05-29 10:46:49', NULL, NULL, 0, 'Zapf to social green', '204515.pdf', 'junior'),
 (6, 'Mouse', 2016, NULL, 'Brian Mukuka', NULL, '2020-05-29 10:50:18', NULL, NULL, 0, 'Zapf to social green', '252423.pdf', 'junior'),
-(7, 'Mouse', 2016, NULL, '', NULL, '2020-05-29 10:50:42', NULL, NULL, 0, 'Zapf to social green', '226780.pdf', 'junior'),
-(8, 'focus', 2020, NULL, '', NULL, '2020-05-29 10:51:54', NULL, NULL, 2, 'focus focus focus focus', '384624.pdf', 'junior');
+(7, 'Mouse', 2016, NULL, '', NULL, '2020-05-29 10:50:42', NULL, 2, 0, 'Zapf to social green', '226780.pdf', 'junior'),
+(8, 'focus me', 2020, NULL, 'Brian Mukuka', NULL, '2020-05-29 10:51:54', 1, 1114, 3, 'focus focus focus focus', '226780.pdf', 'junior');
 
 -- --------------------------------------------------------
 
@@ -131,15 +130,27 @@ CREATE TABLE `questions` (
   `b` varchar(1000) DEFAULT NULL,
   `c` varchar(1000) DEFAULT NULL,
   `d` varchar(1000) DEFAULT NULL,
-  `answer` varchar(1000) NOT NULL
+  `answer` varchar(1000) NOT NULL,
+  `level` varchar(100) NOT NULL DEFAULT 'junior'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `questions`
 --
 
-INSERT INTO `questions` (`id`, `type`, `text`, `created_by`, `created_at`, `updated_at`, `a`, `b`, `c`, `d`, `answer`) VALUES
-(53, 'true-false', 'What is php ', '', '2020-06-01 11:41:43', NULL, 'null', 'null', 'null', 'null', 'false');
+INSERT INTO `questions` (`id`, `type`, `text`, `created_by`, `created_at`, `updated_at`, `a`, `b`, `c`, `d`, `answer`, `level`) VALUES
+(53, 'true-false', 'What is php ', '', '2020-06-01 11:41:43', NULL, '', '', '', '', 'false', 'junior'),
+(54, 'one-word', 'What is php ', '', '2020-06-05 12:51:26', NULL, '', '', '', '', 'false', 'junior'),
+(55, 'multiple-choice', 'What is php ', '', '2020-06-05 12:51:39', NULL, '', '', '', '', 'false', 'junior'),
+(56, 'multiple-choice', 'What is php ', '', '2020-06-05 12:51:49', NULL, '', '', '', '', 'false', 'junior'),
+(57, 'one-word', 'What is php ', '', '2020-06-05 12:52:00', NULL, '', '', '', '', 'false', 'junior'),
+(58, 'true-false', 'What is php ', '', '2020-06-05 12:52:06', NULL, '', '', '', '', 'false', 'junior'),
+(59, 'one-word', 'What is php ', '', '2020-06-05 17:00:44', NULL, '', '', '', '', 'false', 'junior'),
+(60, 'one-word', 'What is php ', '', '2020-06-05 17:01:05', NULL, '', '', '', '', 'false', 'junior'),
+(61, 'one-word', 'What is php ', '', '2020-06-05 17:01:53', NULL, '', '', '', '', 'false', 'junior'),
+(62, 'one-word', 'What is php ', '', '2020-06-05 17:05:19', NULL, '', '', '', '', 'false', 'junior'),
+(63, 'one-word', 'What is php ', '', '2020-06-05 17:05:32', NULL, '', '', '', '', 'false', 'junior'),
+(64, 'true-false', 'is covid real ?', '', '2020-06-08 12:31:04', NULL, 'null', 'null', 'null', 'null', 'false', 'junior');
 
 -- --------------------------------------------------------
 
@@ -156,22 +167,26 @@ CREATE TABLE `resources` (
   `link` varchar(1000) NOT NULL,
   `downloads` bigint(20) DEFAULT 0,
   `created_by` varchar(100) DEFAULT NULL,
-  `description` varchar(1000) NOT NULL
+  `description` varchar(1000) NOT NULL,
+  `level` varchar(100) NOT NULL DEFAULT 'junior'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `resources`
 --
 
-INSERT INTO `resources` (`id`, `title`, `type`, `created_at`, `updated_at`, `link`, `downloads`, `created_by`, `description`) VALUES
-(8, 'asdf', 'pdf', '2020-05-19 01:01:19', NULL, '420372.pdf', 0, NULL, ''),
-(9, 'Mouse', 'mp4', '2020-05-19 01:07:07', NULL, '230327.mp4', 0, NULL, 'dsa;kfjas;kfjasd;lkfj;sadklmfasd;lfkasdl/'),
-(10, 'Mouse', 'png', '2020-05-19 01:13:40', NULL, '910199.png', 0, NULL, ''),
-(11, 'Mouse', 'png', '2020-05-19 01:16:45', NULL, '576582.png', 0, NULL, ''),
-(12, 'Mouse', 'pdf', '2020-05-19 02:03:40', NULL, '970863.pdf', 0, '', ''),
-(13, 'asdf', 'pdf', '2020-05-19 02:06:52', NULL, '996192.pdf', 0, '', ''),
-(14, 'Mouse', 'pdf', '2020-05-29 12:01:32', NULL, '737547.pdf', 0, '', 'kjkpllk'),
-(15, 'Intro to Computer', 'mp4', '2020-05-29 12:02:34', NULL, '661793.mp4', 0, '', 'Intro to ComputerIntro to Computer');
+INSERT INTO `resources` (`id`, `title`, `type`, `created_at`, `updated_at`, `link`, `downloads`, `created_by`, `description`, `level`) VALUES
+(9, 'Mouse', 'mp4', '2020-05-19 01:07:07', NULL, '230327.mp4', 0, NULL, 'dsa;kfjas;kfjasd;lkfj;sadklmfasd;lfkasdl/', 'junior'),
+(10, 'Mouse', 'png', '2020-05-19 01:13:40', NULL, '910199.png', 0, NULL, '', 'junior'),
+(11, 'Mouse', 'png', '2020-05-19 01:16:45', NULL, '576582.png', 0, NULL, '', 'junior'),
+(12, 'Mouse', 'pdf', '2020-05-19 02:03:40', NULL, '970863.pdf', 1, '', '', 'junior'),
+(15, 'Intro to Computer', 'mp4', '2020-05-29 12:02:34', NULL, '661793.mp4', 1, '', 'Intro to ComputerIntro to Computer', 'junior'),
+(16, 'Zapf to social green', 'png', '2020-06-05 10:54:41', NULL, '196250.png', 0, '', 'Zapf to social green', 'level'),
+(17, 'Mouse', 'png', '2020-06-05 12:45:41', NULL, '388277.png', 1, '', 'Zapf to social green', 'level'),
+(18, 'Mouse', 'png', '2020-06-05 12:46:53', NULL, '791590.png', 1, '', 'Zapf to social green', 'junior'),
+(19, '', '', '2020-06-05 14:19:35', NULL, '', 0, 'Brian Mukuka', '', ''),
+(20, '', '', '2020-06-08 11:04:46', NULL, '', 0, '', '', ''),
+(21, '', '', '2020-06-08 11:10:43', NULL, '', 0, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -195,6 +210,33 @@ CREATE TABLE `students` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `test_results`
+--
+
+CREATE TABLE `test_results` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `right` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `wrong` int(11) NOT NULL,
+  `score` int(11) NOT NULL,
+  `comment` varchar(100) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `test_results`
+--
+
+INSERT INTO `test_results` (`id`, `student_id`, `right`, `total`, `wrong`, `score`, `comment`, `date`) VALUES
+(10, 25, 0, 1, 1, 0, 'fail', '2020-06-23 11:57:52'),
+(11, 25, 0, 0, 0, 0, 'pass', '2020-06-23 11:57:52'),
+(12, 25, 0, 1, 1, 0, 'fail', '2020-06-23 11:57:52'),
+(13, 25, 0, 0, 0, 0, 'pass', '2020-06-23 12:15:36');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -208,19 +250,25 @@ CREATE TABLE `users` (
   `grade` int(2) NOT NULL,
   `password` varchar(128) NOT NULL,
   `gender` varchar(7) NOT NULL,
-  `role` varchar(10) NOT NULL DEFAULT 'student'
+  `role` varchar(10) NOT NULL DEFAULT 'student',
+  `country` varchar(100) DEFAULT NULL,
+  `district` varchar(100) DEFAULT NULL,
+  `province` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `dob`, `school`, `level`, `grade`, `password`, `gender`, `role`) VALUES
-(5, '', 'brian@g.com', '2020-05-01', 'fews', 1, 1, 'c20ad4d76fe97759aa27a0c99bff6710', 'Male', 'student'),
-(23, 'Brian Mukuka', 'admin@gmail.com', '2020-05-19', 'fews', 12, 1, 'c20ad4d76fe97759aa27a0c99bff6710', 'Male', 'student'),
-(25, 'Brian Mukuka', 'brianmuks@gmail.com', '2020-05-20', 'fews', 23, 2, '984cefd6d27eb0471fc401a493a4fdff', 'Male', 'admin'),
-(28, 'Brian Mukuka', 'brianmuks@gmail.com2', '2020-05-19', 'fews', 12, 12, '984cefd6d27eb0471fc401a493a4fdff', 'Male', 'student'),
-(29, 'Brian Mukuka', 'brianmuks@gmail.com4', '2020-05-12', 'fews', NULL, 8, 'c20ad4d76fe97759aa27a0c99bff6710', 'Male', 'student');
+INSERT INTO `users` (`id`, `name`, `email`, `dob`, `school`, `level`, `grade`, `password`, `gender`, `role`, `country`, `district`, `province`, `created_at`) VALUES
+(5, 'Brian Mukuka m', 'brian@g.com', '2020-05-20', 'fews', 1, 8, '984cefd6d27eb0471fc401a493a4fdff', 'Male', 'student', NULL, NULL, NULL, '2020-06-24 08:23:01'),
+(23, 'Brian Mukuka m', 'admin@gmail.com', '2020-05-20', 'fews', 12, 8, '984cefd6d27eb0471fc401a493a4fdff', 'Male', 'student', NULL, NULL, NULL, '2020-06-24 08:23:01'),
+(25, 'Brian Mukuka', 'brianmuks@gmail.com', '2020-05-20', 'fews', 23, 8, '984cefd6d27eb0471fc401a493a4fdff', 'Male', 'admin', 'Zambia', 'Lusaka', 'Lusaka', '2020-06-24 08:23:01'),
+(28, 'Brian Mukuka m', 'brianmuks@gmail.com2', '2020-05-20', 'fews', 12, 8, '984cefd6d27eb0471fc401a493a4fdff', 'Male', 'student', NULL, NULL, NULL, '2020-06-24 08:23:01'),
+(29, 'Brian Mukuka m', 'brianmuks@gmail.com4', '2020-05-20', 'fews', NULL, 8, '984cefd6d27eb0471fc401a493a4fdff', 'Male', 'student', NULL, NULL, NULL, '2020-06-24 08:23:01'),
+(31, 'Kelvin', 'brianmuks@gmail.com7', '2020-06-17', 'fews', NULL, 8, '984cefd6d27eb0471fc401a493a4fdff', 'Male', 'student', NULL, NULL, NULL, '2020-06-24 08:23:01'),
+(35, 'sd', 'brianmuks@gmail.comx', '2020-06-10', 'lkj', NULL, 8, 'c20ad4d76fe97759aa27a0c99bff6710', 'Male', 'student', 'Zambia', 'Lusaka', 'Lusaka', '2020-06-24 08:23:01');
 
 --
 -- Indexes for dumped tables
@@ -263,6 +311,12 @@ ALTER TABLE `students`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `test_results`
+--
+ALTER TABLE `test_results`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -283,25 +337,25 @@ ALTER TABLE `answers`
 -- AUTO_INCREMENT for table `mark_schema`
 --
 ALTER TABLE `mark_schema`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `past_papers`
 --
 ALTER TABLE `past_papers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `resources`
 --
 ALTER TABLE `resources`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -310,10 +364,16 @@ ALTER TABLE `students`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `test_results`
+--
+ALTER TABLE `test_results`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

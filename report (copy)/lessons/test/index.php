@@ -1,26 +1,10 @@
 
 <?php
-     require_once(__DIR__.'../../../db/connection.php');
-
 require_once('../../layout/admin/header.php');
 require_once('../api/index.php');
 $files = getQuestions(true);
 
-    $conn = DBCoonect();
-
-
 ?>
-
-  <?php
-  //get minutes from the db
-     $sql = "SELECT `minutes` FROM timer  ";
-
-        $results = mysqli_query($conn,$sql);  
-        $row  = mysqli_fetch_assoc($results);
-        $minutes = $row['minutes'] ;
-        // die($minutes);
-     
-     ?>
 
 <style>
 
@@ -55,54 +39,9 @@ $files = getQuestions(true);
 </style>
 
 
-<div class="modal" tabindex="-1" role="dialog" data-toggle="modal" id="myModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Edit Test Timer</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-<h1>Time</h1>
-
-
-  
-    <div class="col-auto">
-      <label class="sr-only" for="inlineFormInputGroup">Minutes</label>
-      <div class="input-group mb-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text">@</div>
-        </div>
-        <input id='newMinutes' value="<?php echo $minutes ?>"  type="number" class="form-control" id="inlineFormInputGroup" placeholder="60 for 1 hour">
-      </div>
-    </div>
-
-</div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id='saveNewMinutes' class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
  
 
 <div class="card text-white bg-info mb-3">
-    <?php
-                        if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin'):
-
-
-            
-            ?>
-            <button type="button" data-toggle="modal" data-target="#myModal">Edit Timer</button>
-<?php  
-endif
-?>
-
   <h5 class="card-header"> IQ Test </h5>
   <div class="card-body">
     <h5 class="card-title">Check your worthy</h5>
@@ -285,11 +224,7 @@ D
 
 </form>
 
-
-
 <script>
-
-   
 
 function getTimeRemaining(endtime) {
   var t = Date.parse(endtime) - Date.parse(new Date());
@@ -307,9 +242,6 @@ function getTimeRemaining(endtime) {
 }
 
 function initializeClock(id, endtime) {
-
-
-
   var clock = document.getElementById(id);
   var daysSpan = clock.querySelector('.days');
   var hoursSpan = clock.querySelector('.hours');
@@ -333,40 +265,16 @@ function initializeClock(id, endtime) {
   updateClock();
   var timeinterval = setInterval(updateClock, 1000);
 }
-  const duration = <?php echo $minutes ?>;
 
-var deadline = new Date(Date.parse(new Date()) +  duration * 60 * 1000);
+var deadline = new Date(Date.parse(new Date()) +  60* 60 * 1000);
 initializeClock('clockdiv', deadline);
 
 </script>
 
 <?php
-require_once('../../layout/admin/footer.php');
+require_once('../../layout/admin/footer.php')
 
 ?>
-
-<script>
-       $('#saveNewMinutes').click(()=>{
-            const newMinutes = $('#newMinutes').val();
-            location.href = `./index.php?newMinutes=${newMinutes}`;
-          })
-</script>
-
-     <?php
-
-     //set 
-     
-     if(isset($_GET['newMinutes'])){
-
-        $newMinutes  = $_GET['newMinutes'] ;
-       $sql = "UPDATE  timer SET `minutes`= '$newMinutes' ";
-       
-       $results = mysqli_query($conn,$sql);  
-       echo '<script> location.href = "./index.php" </script>';
-      }
-     ?>
-
-
 
 
 

@@ -38,6 +38,22 @@
         </div>
       </li>
 
+
+                <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Reports
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/comp_test/report/users.php">Users </a>
+          <a class="dropdown-item" href="/comp_test/report/resources.php?type=mp4">Videos</a>
+          <a class="dropdown-item" href="/comp_test/report/resources.php?type=png">Picture</a>
+          <a class="dropdown-item" href="/comp_test/report/resources.php?type=pdf">Books</a>
+          <a class="dropdown-item" href="/comp_test/report/exam_resources.php?type=past_papers">Past papers</a>
+          <a class="dropdown-item" href="/comp_test/report/exam_resources.php?type=mark_schema">mark Schema</a>
+ 
+        </div>
+      </li>
+
           <li class="nav-item">
           <a class=" btn btn-info text-" href="/comp_test/lessons/test/all_results.php">
 
